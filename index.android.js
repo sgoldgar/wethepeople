@@ -6,6 +6,8 @@ import {
   View
 } from 'react-native';
 
+import App from './components/App';
+
 export default class WeThePeople extends Component {
   render() {
     return (
