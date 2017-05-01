@@ -45,12 +45,11 @@ class App extends Component {
           latitude: latitude,
           longitude: longitude
         });
+        this.getAddressFromLatLong();
       },
       (error) => alert(JSON.stringify(error)),
       {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
-    );
-
-    this.getAddressFromLatLong();
+    )
   }
 
 
@@ -59,26 +58,34 @@ class App extends Component {
     .then(function(response) {
       return response.json()
     })
-    .then(function(data) {
-      console.log(data)
-      // this.setState({
-      //   address: {
-      //     streetNumber: data.address.streetNumber,
-      //     street: data.address.street,
-      //     state: data.address.adminCode1
-      //
-      //   }
-      // })
+    .then(data => {
+      this.setState({
+        address: {
+          streetNumber: data.address.streetNumber,
+          street: data.address.street,
+          state: data.address.adminCode1,
+          zipCode: data.address.postalcode,
+          city: data.address.placename
+        }
+      });
+
     })
     .catch((error) => {
       console.error(error);
     });
   }
 
+  changeAddress() {
+
+  }
+
 
 
 
   render() {
+
+    const address = this.state.address
+
     return(
         <View style={ styles.app }>
           <TabBarIOS
@@ -89,6 +96,7 @@ class App extends Component {
             >
 
             <Icon.TabBarItem
+              style={ styles.bottomBar }
               title="Home"
               iconName="md-home"
               selectedIconName="md-home"
@@ -99,7 +107,7 @@ class App extends Component {
                 });
               }}>
               <View style={ styles.appContainer }>
-                <Home />
+                <Home address={ address } />
               </View>
             </Icon.TabBarItem>
 
@@ -116,7 +124,7 @@ class App extends Component {
 
               <View style={ styles.appContainer }>
                 <Header />
-                <RepPage />
+                <RepPage address={ address } />
               </View>
 
             </Icon.TabBarItem>
@@ -134,7 +142,7 @@ class App extends Component {
 
               <View style={ styles.appContainer }>
                 <Header />
-                <ChangeLocal/>
+                <ChangeLocal address={ address } />
               </View>
 
             </Icon.TabBarItem>
@@ -151,7 +159,7 @@ class App extends Component {
               }}>
               <View style={ styles.appContainer }>
                 <Header />
-                <GoVote />
+                <GoVote address={ address } />
               </View>
             </Icon.TabBarItem>
 
@@ -169,7 +177,9 @@ const styles = StyleSheet.create({
   appContainer: {
     flex: 1,
     flexDirection: 'column',
-
+  },
+  bottomBar: {
+    flex: 1
   }
 
 });
