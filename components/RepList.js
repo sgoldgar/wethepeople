@@ -8,14 +8,25 @@ import {
   View
 } from 'react-native';
 
-key = 'AIzaSyB6NrpRei3RgGwXreJOfnM3f9hSeX1wtns'
-const state = TX //input.state eventually depending on input from user
+googleApiKey = 'AIzaSyB6NrpRei3RgGwXreJOfnM3f9hSeX1wtns';
+googleApiUrl + key = 'https://www.googleapis.com/civicinfo/v2/representatives?key=AIzaSyB6NrpRei3RgGwXreJOfnM3f9hSeX1wtns'
+
+
 
 //senate requests
-fetch('https://www.googleapis.com/civicinfo/v2/representatives?key=AIzaSyB6NrpRei3RgGwXreJOfnM3f9hSeX1wtns&address=1263%20Pacific%20Ave.%20Kansas%20City%20KS')
-  .then(function(repsData) {
-    return response.json()
+fetch(googleApiUrl, {
+  body: JSON.stringify({
+    address: input.addess, //whatever address is input by user
+    roles: 'legislatorUpperBody' // or legislatorLowerBody
   })
+})
+.then(function(repsData) {
+    return repsData.json()
+  })
+.catch((error) => {
+  console.error(error);
+});
+
 
 class RepList extends Component {
   // Initialize the hardcoded data
@@ -44,42 +55,24 @@ class RepList extends Component {
 }
 
 
-//we will need to filter getbyaddres api results by indices
-// "offices": [
-//  {
-//   "name": "United States House of Representatives KS-03",
-//   "level": "federal",
-//   "officialIndices": [ 0 ]
-//  },
-//  {
-//   "name": "KS State House District 32",
-//   "level": "state",
-//   "officialIndices": [ 1 ]
-//  },
-// {
-//    "name": "KS State Senate District 6",
-//    "level": "state",
-//    "officialIndices": [ 19 ]
-//   }
-
 /*would be inputting this information above, coming from federal or local or state*/
 const Reps = (props) => (
   <View style={styles.container}>
-    <Image source={uri: reps.photoUrl} />
+    <Image source={uri: reps.officials.photoUrl} />
     <Text style={styles.text}>
-      {`${reps.name}`}
+      {`${reps.officials.name}`}
     </Text>
     <Text style={styles.text}>
-      {`${reps.party}`}
+      {`${reps.officials.party}`}
     </Text>
     <Text style={styles.text}>
-      {`${reps.role}`}
+      {`${reps.officials.role}`}
     </Text>
     <Text style={styles.text}>
-      {`${reps.emails}`}
+      {`${reps.officials.emails}`}
     </Text>
     <Text style={styles.text}>
-      {`${reps.phones}`}
+      {`${reps.officials.phones}`}
     </Text>
   </View>
 );
