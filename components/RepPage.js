@@ -12,24 +12,20 @@ import FederalReps from './FederalReps';
 
 
 class RepPage extends Component {
-
-
-
   render() {
     return(
       <View style={ styles.repPage }>
         <Text>Rep Page</Text>
         <FederalReps />
       </View>
-
     )
   }
 }
 
 const styles = StyleSheet.create({
-repPage: {
-  flex: 9
-}
+  repPage: {
+    flex: 9
+  }
 });
 
 export default RepPage;

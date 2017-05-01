@@ -5,6 +5,7 @@ import {
   StyleSheet,
   ListView,
   Text,
+  Image,
   View
 } from 'react-native';
 
@@ -22,40 +23,57 @@ class RepList extends Component {
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     //set state to be the list of reps from the parent container, repsData will need to be an array of objects
     this.state = {
-      reps: [],
-      // dataSource: ds.cloneWithRows(repsData),
+      reps: []
     }
-
-
   }
 
 
   componentDidMount(){
     fetch('https://www.googleapis.com/civicinfo/v2/representatives?key=AIzaSyB6NrpRei3RgGwXreJOfnM3f9hSeX1wtns&address=1200%20Bentwood%20Rd.%20Austin%20TX&roles=legislatorUpperBody')
-      .then(function(response) {
+      .then((response) => {
         return response.json()
         console.log(response.json());
       })
-      .then(function(response) {
-        console.log(response);
-        console.log(response.officials)
-        // this.setState({ reps: response.officials });
+      .then((response) => {
+        console.log('response: ',response);
+        console.log('response.officials: ',response.officials);
+
+        this.setState({
+          reps: response.officials
+         });
+
+         console.log('this.state.reps: ', this.state.reps)
       })
   }
 
 
   render() {
+    if(!this.state.reps.length){
+      return(<Text>Loading..</Text>)
+    }
+
+    const repsList = this.state.reps.map((rep) => {
+      console.log('rep is: ', rep)
       return (
-          <Text>{this.state.reps}</Text>
-      )
+        <View>
+        <Image source={{uri: rep.photoUrl}}/>
+        <Text>{rep.name}</Text>
+        <Text>{rep.party}</Text>
+        {/*<Text>{rep.phones[0]}</Text>*/}
+        {/*<Text>{rep.emails}</Text>*/}
+        </View>
+      );
+    });
+
+    return (
+      <View>
+        {repsList}
+      </View>
+    )
+
   }
+
 }
 
 // App registration and rendering
 export default RepList;
-
-// <ListView
-//    style={styles.container}
-//    dataSource={this.state.dataSource}
-//    renderRow={(data) => <View><Text>{data}</Text></View>}
-// />
