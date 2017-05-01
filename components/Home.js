@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import Rep from './Rep'
 import {
   AppRegistry,
   StyleSheet,
@@ -89,5 +89,4 @@ valButtons: {
   flexDirection: 'row'
 },
 });
-
 export default Home;
