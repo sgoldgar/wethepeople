@@ -15,7 +15,7 @@ class ChangeLocal extends Component {
 
   render() {
     return(
-      <View>
+      <View style={ styles.changeLocal }>
         <Text>
           Change Local
         </Text>
@@ -26,7 +26,9 @@ class ChangeLocal extends Component {
 }
 
 const styles = StyleSheet.create({
-
+changeLocal: {
+  flex: 9
+}
 });
 
 export default ChangeLocal;
