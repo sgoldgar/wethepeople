@@ -3,31 +3,34 @@ import { AppRegistry } from 'react-native';
 
 class Rep extends Component {
   constructor(props){
-    super(props)
-    this.state=this.defaultState()
+    super(props);
+    this.state = {text: '' };
   }
 
   render(){
     return(
-      <Image source={require('url')} />
-        name = {first_name + last_name}
-        party = {party}
-        chamber={chamber}
-        phone = {phone}
-        email= {url}
+    <View style={styles.rowContainer}>
+          <Image source= {{photoUrl}} />
+          <TextInput
+          name={john}
+          address={101}
+          party={R}
+          email={email}
+          phones={1234567890}
 
-      )
+          />
+        </View>
+    );
   }
 }
 
 
 
+// const styles = StyleSheet.create ({
 
 
+// })
 
-
-
-
-export default Rep
+export default Rep;
 
 

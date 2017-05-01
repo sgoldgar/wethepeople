@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import Rep from './Rep'
 import {
   AppRegistry,
   StyleSheet,
@@ -34,5 +34,4 @@ home: {
   alignItems: 'center',
 }
 });
-
 export default Home;
