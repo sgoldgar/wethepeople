@@ -13,10 +13,8 @@ import {
 import Home from './Home';
 import ChangeLocal from './ChangeLocal';
 import GoVote from './GoVote';
-
-import Header from './Header'
-import RepPage from './RepPage'
-import RepList from './RepList';
+import Header from './Header';
+import RepPage from './RepPage';
 
 class App extends Component {
   constructor(props) {
