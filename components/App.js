@@ -13,7 +13,8 @@ import {
 import Home from './Home';
 import ChangeLocal from './ChangeLocal';
 import GoVote from './GoVote';
-import Header from './Header'
+import Header from './Header';
+import RepList from './RepList';
 
 
 class App extends Component {
@@ -67,7 +68,7 @@ class App extends Component {
 
               <View style={ styles.appContainer }>
                 <Header />
-                <ChangeLocal />
+                <ChangeLocal/>
               </View>
 
             </Icon.TabBarItem>

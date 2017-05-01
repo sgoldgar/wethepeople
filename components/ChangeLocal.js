@@ -17,7 +17,7 @@ class ChangeLocal extends Component {
     return(
       <View style={ styles.changeLocal }>
         <Text>
-          Change Local
+          Change local page
         </Text>
       </View>
 
