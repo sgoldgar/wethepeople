@@ -14,6 +14,7 @@ import Home from './Home';
 import ChangeLocal from './ChangeLocal';
 import GoVote from './GoVote';
 import Header from './Header'
+import RepPage from './RepPage'
 
 
 class App extends Component {
@@ -22,10 +23,59 @@ class App extends Component {
 
 
     this.state = {
-      selectedTab: 'home'
-    };
+      selectedTab: 'home',
+      latitude: '',
+      longitude: '',
+      address: {
+        streetNumber: '',
+        street: '',
+        city: '',
+        state: ''
+      }
+    }
 
   }
+
+  componentDidMount() {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        let latitude = position.coords.latitude;
+        let longitude = position.coords.longitude;
+
+        this.setState({
+          latitude: latitude,
+          longitude: longitude
+        });
+      },
+      (error) => alert(JSON.stringify(error)),
+      {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
+    );
+
+    this.getAddressFromLatLong();
+  }
+
+
+  getAddressFromLatLong() {
+    fetch(`http://api.geonames.org/findNearestAddressJSON?lat=37.785834&lng=-122.406417&username=wethepeople`)
+    .then(function(response) {
+      return response.json()
+    })
+    .then(function(data) {
+      console.log(data)
+      // this.setState({
+      //   address: {
+      //     streetNumber: data.address.streetNumber,
+      //     street: data.address.street,
+      //     state: data.address.adminCode1
+      //
+      //   }
+      // })
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+  }
+
 
 
 
@@ -55,7 +105,25 @@ class App extends Component {
             </Icon.TabBarItem>
 
             <Icon.TabBarItem
-              title="Change Zip"
+              title="Representatives"
+              iconName="ios-man"
+              selectedIconName="ios-man"
+              selected={this.state.selectedTab === 'repPage'}
+              onPress={() => {
+                this.setState({
+                  selectedTab: 'repPage'
+                });
+              }}>
+
+              <View style={ styles.appContainer }>
+                <Header />
+                <RepPage />
+              </View>
+
+            </Icon.TabBarItem>
+
+            <Icon.TabBarItem
+              title="Change Location"
               iconName="ios-pin"
               selectedIconName="ios-pin"
               selected={this.state.selectedTab === 'changeLocal'}
