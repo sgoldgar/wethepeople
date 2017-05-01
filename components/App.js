@@ -13,8 +13,13 @@ import {
 import Home from './Home';
 import ChangeLocal from './ChangeLocal';
 import GoVote from './GoVote';
+<<<<<<< HEAD
 import Header from './Header'
 import RepPage from './RepPage'
+=======
+import Header from './Header';
+import RepList from './RepList';
+>>>>>>> 5706155add6d02081f0e0f7283e503e432d45063
 
 
 class App extends Component {
@@ -135,7 +140,7 @@ class App extends Component {
 
               <View style={ styles.appContainer }>
                 <Header />
-                <ChangeLocal />
+                <ChangeLocal/>
               </View>
 
             </Icon.TabBarItem>
