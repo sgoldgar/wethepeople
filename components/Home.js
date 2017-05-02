@@ -29,11 +29,12 @@ class Home extends Component {
           </Image>
         </View>
         <View style={ styles.homeVal }>
-
-          <Text>We see you're located at</Text>
-          <Text style={ styles.location }>{ address.street }</Text>
-          <Text style={ styles.location }>{ address.city }, { address.state} { address.zipCode }</Text>
-          <Text>Is this where you are registered to vote?</Text>
+          <View style={styles.homeText}>
+            <Text>We see you're located at</Text>
+            <Text style={ styles.locationStreet }>{ address.street }</Text>
+            <Text style={ styles.locationCity }>{ address.city }, { address.state} { address.zipCode }</Text>
+            <Text>Is this where you are registered to vote?</Text>
+          </View>
 
           <View style= { styles.valButtons}>
             <View style={styles.buttonContainer}>
@@ -85,11 +86,15 @@ const styles = StyleSheet.create({
   homeText:{
     flexDirection: 'column',
     alignItems: 'center',
-    marginBottom: 20
+    marginBottom: 40
   },
-  location:{
+  locationStreet:{
     fontSize: 20,
-    marginVertical: 10
+    marginTop: 10
+  },
+  locationCity:{
+    fontSize: 20,
+    marginBottom: 10
   },
   valButtons:{
     flexDirection:'row'
