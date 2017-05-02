@@ -31,14 +31,22 @@ class FederalReps extends Component {
   }
 
   componentDidMount(){
-    fetch('https://www.googleapis.com/civicinfo/v2/representatives?key=AIzaSyB6NrpRei3RgGwXreJOfnM3f9hSeX1wtns&address=1200%20Bentwood%20Rd.%20Austin%20TX&roles=legislatorUpperBody')
+    console.log(this.props.address.street);
+    let address = this.props.address.street.replace(/\s/g, "%20"); //"1200%20Bentwood%20Rd."
+    // console.log(address);
+    let city = this.props.address.city.replace(/\s/g, "%20");//"%20Austin";
+    // console.log(city);
+    let state = this.props.address.state//"%20TX";
+    // console.log(state);
+
+    fetch(`https://www.googleapis.com/civicinfo/v2/representatives?key=AIzaSyB6NrpRei3RgGwXreJOfnM3f9hSeX1wtns&address=${address}%20${city}%20${state}&roles=legislatorUpperBody`)
       .then((response) => {
         return response.json()
         console.log(response.json());
       })
       .then((response) => {
         console.log('response: ',response);
-        console.log('response.officials: ',response.officials);
+        console.log('response.officials (upperbody): ',response.officials);
 
         this.setState({
           reps: response.officials
