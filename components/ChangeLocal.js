@@ -53,7 +53,7 @@ class ChangeLocal extends Component {
             <TextInput
               ref="address"
               style={ styles.input }
-              onChangeText={ input => this.setState({ addressInput: input }) }
+              onChange={ input => this.setState({ addressInput: input }) }
               placeholder="Address"
               value={ this.state.addressInput }
               returnKeyType='next'
@@ -131,29 +131,34 @@ inputBlock: {
   flex: 2,
   flexDirection: 'column',
   justifyContent: 'center',
-  borderBottomWidth: 1,
-  borderTopWidth: 1
+  borderTopWidth: StyleSheet.hairlineWidth,
+  borderBottomWidth: StyleSheet.hairlineWidth,
+  marginBottom: 60
 
 },
 textInput: {
-  borderBottomWidth: 1
+
 },
 input: {
   flex: 1,
-  textAlign: 'center',
+  textAlign: 'left',
+  margin: 20,
+  paddingLeft: '10%',
+
   height: 30,
-  margin: 10,
+
 
 },
 submit: {
   flex: 1,
   paddingTop: 40,
-  paddingBottom: 30,
+
   alignItems: 'center',
   backgroundColor: '#549E95'
 },
 submitText: {
-  fontSize: 25
+  fontSize: 25,
+  color: '#FFFFFF'
 }
 
 });

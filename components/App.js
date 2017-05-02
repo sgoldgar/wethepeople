@@ -90,8 +90,10 @@ class App extends Component {
     });
   }
 
-  _onMomentumScrollEnd (e, state, context) {
-    console.log(state, context.state)
+  changePage(page) {
+    this.setState({
+      selectedTab: page
+    });
   }
 
 
@@ -121,7 +123,7 @@ class App extends Component {
                 });
               }}>
               <View style={ styles.appContainer }>
-                <Home address={ address } />
+                <Home address={ address } changePage={ this.changePage.bind(this) }/>
               </View>
             </Icon.TabBarItem>
 
@@ -186,7 +188,8 @@ class App extends Component {
 
 const styles = StyleSheet.create({
   app: {
-    flex: 1
+    flex: 1,
+
   },
   appContainer: {
     flex: 1,
