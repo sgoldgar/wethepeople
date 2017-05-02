@@ -60,7 +60,7 @@ class FederalReps extends Component {
 
   render() {
     return(
-      <View>
+      <View style={styles.fedreps}>
         <Text>Federal Reps</Text>
         <RepList reps={this.state.reps}/>
       </View>
@@ -70,6 +70,9 @@ class FederalReps extends Component {
 }
 
 const styles = StyleSheet.create({
+  fedreps: {
+    flex: 1
+  }
 
 });
 
