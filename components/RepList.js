@@ -34,6 +34,7 @@ class RepList extends Component {
       console.log('testing: ', this.props.reps)
       return(<Text>Loading..</Text>)
     }
+
     return (
        <ListView
          enableEmptySections={true}
@@ -44,3 +45,14 @@ class RepList extends Component {
   } //end render
 
 } //end component
+
+
+const styles = StyleSheet.create({
+  holder: {
+    flex: 0.25,
+    justifyContent: 'center',
+  },
+});
+
+// App registration and rendering
+export default RepList;
