@@ -30,6 +30,8 @@ class RepPage extends Component {
     }
   }
 
+
+
   _handleChangeTab = (index) => {
     this.setState({ index });
   };
@@ -62,9 +64,9 @@ class RepPage extends Component {
 
     const address = this.props.address
 
+
     return(
       <TabViewAnimated
-        address={ address }
         style={ styles.repPage }
         navigationState={this.state}
         renderScene={this._renderScene}
