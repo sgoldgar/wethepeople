@@ -10,14 +10,14 @@ import {
 } from 'react-native';
 
 
-const googleApiKey = 'AIzaSyB6NrpRei3RgGwXreJOfnM3f9hSeX1wtns';
-const googleApiUrl = 'https://www.googleapis.com/civicinfo/v2/representatives?key=AIzaSyB6NrpRei3RgGwXreJOfnM3f9hSeX1wtns';
-const addressTest = '&address=1200%20Bentwood%20Rd.%20Austin%20TX';
-const roles = '&roles=legislatorUpperBody';
+// const googleApiKey = 'AIzaSyB6NrpRei3RgGwXreJOfnM3f9hSeX1wtns';
+// const googleApiUrl = 'https://www.googleapis.com/civicinfo/v2/representatives?key=AIzaSyB6NrpRei3RgGwXreJOfnM3f9hSeX1wtns';
+// const addressTest = '&address=1200%20Bentwood%20Rd.%20Austin%20TX';
+// const roles = '&roles=legislatorUpperBody';
 
 
 class FederalReps extends Component {
-  construtor(props) {
+  constructor(props) {
     super(props)
     this.state = {
       reps: [],
@@ -25,7 +25,7 @@ class FederalReps extends Component {
         street: this.props.address.street,
         city: this.props.address.city,
         state: this.props.address.state,
-        zipCode: this.props.address.zipCode
+        zipCode: this.props.address.zipCode,
       }
     }
   }
@@ -54,7 +54,7 @@ class FederalReps extends Component {
     return(
       <View>
         <Text>Federal Reps</Text>
-        <RepList />
+        <RepList reps={this.state.reps}/>
       </View>
 
     )
