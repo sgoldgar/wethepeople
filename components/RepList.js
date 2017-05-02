@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Rep from './Rep';
 // import FederalReps from './FederalReps';
 // import Icon from 'react-native-vector-icons/MaterialIcons';
 // import Communications from 'react-native-communications';
@@ -34,12 +35,18 @@ class RepList extends Component {
       return(<Text>Loading..</Text>)
     }
 
+
     return (
-      <View style={{flex: 1, paddingTop: 22}}>
-           <ListView
-             dataSource={this.state.dataSource}
-             renderRow={(rowData) => <Rep repData={rowData}/>}
-           />
+      <View>
+        <View style={{flex: 1, paddingTop: 22}}>
+             <ListView
+               dataSource={this.state.dataSource}
+               renderRow={(rowData) => <Rep repData={rowData}/>}
+             />
+        </View>
+        <View>
+           <Rep/>
+         </View>
       </View>
     )
   } //end render
