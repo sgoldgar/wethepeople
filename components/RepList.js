@@ -25,7 +25,7 @@ class RepList extends Component {
     //this is required for listview
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
-      dataSource: ds.cloneWithRows(this.props.reps);
+      dataSource: ds.cloneWithRows(this.props.reps)
     };
   }
 
@@ -33,6 +33,7 @@ class RepList extends Component {
     if(!this.props.reps.length){
       return(<Text>Loading..</Text>)
     }
+<<<<<<< HEAD
 <<<<<<< HEAD
 
     const repsList = this.state.reps.map((rep) => {
@@ -51,13 +52,16 @@ class RepList extends Component {
 
 =======
 >>>>>>> 0ea29ba832b2e77a933e0a06866d06aeb0be06f7
+=======
+
+>>>>>>> f3bf3f74723c4fbd2b82d0e68500883eb1e69706
     return (
       <View style={{flex: 1, paddingTop: 22}}>
            <ListView
              dataSource={this.state.dataSource}
-             renderRow={(rowData) => <Rep>{rowData}</Rep>}
+             renderRow={(rowData) => <Rep repData={rowData}/>}
            />
-         </View>
+      </View>
     )
   } //end render
 

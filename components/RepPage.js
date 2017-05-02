@@ -47,7 +47,7 @@ class RepPage extends Component {
   _renderScene = ({ route }) => {
     switch (route.key) {
     case '1':
-      return <FederalReps />;
+      return <FederalReps address={this.props.address} />;
     case '2':
       return <StateReps />;
     case '3':
