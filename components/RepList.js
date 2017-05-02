@@ -33,28 +33,8 @@ class RepList extends Component {
     if(!this.props.reps.length){
       return(<Text>Loading..</Text>)
     }
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-    const repsList = this.state.reps.map((rep) => {
-      console.log('rep is: ', rep)
-      return (
-        <View key={Math.random()}>
-        <Image style={styles.lineItem} source={{uri: rep.photoUrl}}/>
-        <Text style={styles.lineItem}>{rep.name}</Text>
-        <Text style={styles.lineItem}>{rep.party}</Text>
-        <Text style={styles.lineItem}>{rep.phones[0]}</Text>
-        <Text style={styles.lineItem}>{rep.emails}</Text>
 
-        </View>
-      );
-    });
-
-=======
->>>>>>> 0ea29ba832b2e77a933e0a06866d06aeb0be06f7
-=======
-
->>>>>>> f3bf3f74723c4fbd2b82d0e68500883eb1e69706
     return (
       <View style={{flex: 1, paddingTop: 22}}>
            <ListView
