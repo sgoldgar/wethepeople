@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Rep from './Rep';
-// import FederalReps from './FederalReps';
 // import Icon from 'react-native-vector-icons/MaterialIcons';
 // import Communications from 'react-native-communications';
 
@@ -32,22 +31,16 @@ class RepList extends Component {
 
   render() {
     if(!this.props.reps.length){
+      console.log('testing: ', this.props.reps)
       return(<Text>Loading..</Text>)
     }
 
-
     return (
-      <View>
-        <View style={{flex: 1, paddingTop: 22}}>
-             <ListView
-               dataSource={this.state.dataSource}
-               renderRow={(rowData) => <Rep repData={rowData}/>}
-             />
-        </View>
-        <View>
-           <Rep/>
-         </View>
-      </View>
+       <ListView
+         enableEmptySections={true}
+         dataSource={this.state.dataSource}
+         renderRow={data => <Rep dataSource={data}/>}
+       />
     )
   } //end render
 
