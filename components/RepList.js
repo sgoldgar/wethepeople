@@ -23,15 +23,23 @@ class RepList extends Component {
   constructor(props) {
     super(props);
     //this is required for listview
-    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+    this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
-      dataSource: ds.cloneWithRows(this.props.reps)
+      dataSource: this.ds.cloneWithRows([])
     };
   }
 
+  componentWillReceiveProps(newProps){
+
+    this.setState({
+      dataSource: this.ds.cloneWithRows(newProps.reps)
+    })
+  }
+
   render() {
+
+
     if(!this.props.reps.length){
-      console.log('testing: ', this.props.reps)
       return(<Text>Loading..</Text>)
     }
 
@@ -39,20 +47,16 @@ class RepList extends Component {
        <ListView
          enableEmptySections={true}
          dataSource={this.state.dataSource}
-         renderRow={data => <Rep dataSource={data}/>}
+         renderRow={data => {
+
+          return <Text>{ data.name }</Text>
+          //return <Rep reps={ data } />
+         }}
        />
+
     )
   } //end render
 
 } //end component
 
-
-const styles = StyleSheet.create({
-  holder: {
-    flex: 0.25,
-    justifyContent: 'center',
-  },
-});
-
-// App registration and rendering
 export default RepList;
