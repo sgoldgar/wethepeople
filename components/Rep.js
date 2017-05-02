@@ -10,30 +10,27 @@ import {
   Animated
 } from 'react-native';
 
-class Rep extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
 
-    };
-  }
-
-  render(){
-    return (
-      <Text>john doe</Text>
-      <Text>Senate</Text>
-      <Text>Republican</Text>
-      <Text>address</Text>
-      <Text>email</Text>
-      <Text>phone</Text>
-      <Text></Text>
-
-
-      );
-  }
+const Rep = props => {
+  let {imageUrl, name, party, phones, emails} = props.Rep
+  return(
+    <View style={styles.container}>
+    <Image source={imageUrl} />
+      <Text> john doe </Text>
+      <Text> party </Text>
+      <Text> phones </Text>
+      <Text> emails</Text>
+    </View>
+    )
 }
 
 
-export default HideableView;
+
+
+
+
+
+
+export default Rep;
 
 

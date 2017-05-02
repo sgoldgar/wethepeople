@@ -1,26 +1,17 @@
 import React, { Component } from 'react';
-<<<<<<< HEAD
-import Rep from './Rep.js';
-=======
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Communications from 'react-native-communications';
 
 
->>>>>>> 2529a52a224e30c806f45a92fbc4a065a8999512
 import {
   AppRegistry,
   StyleSheet,
   ListView,
   Text,
-<<<<<<< HEAD
-  View,
-  Animated
-=======
   Image,
   Button,
   TouchableOpacity,
   View
->>>>>>> 2529a52a224e30c806f45a92fbc4a065a8999512
 } from 'react-native';
 
 const googleApiKey = 'AIzaSyB6NrpRei3RgGwXreJOfnM3f9hSeX1wtns';
@@ -69,17 +60,13 @@ class RepList extends Component {
     const repsList = this.state.reps.map((rep) => {
       console.log('rep is: ', rep)
       return (
-        <View>
-<<<<<<< HEAD
-          <Text>{this.state.reps}</Text>
-          <Rep />
-          </View>
-      )
-=======
+        <View key={Math.random()}>
         <Image style={styles.lineItem} source={{uri: rep.photoUrl}}/>
         <Text style={styles.lineItem}>{rep.name}</Text>
         <Text style={styles.lineItem}>{rep.party}</Text>
         <Text style={styles.lineItem}>{rep.phones[0]}</Text>
+        <Text style={styles.lineItem}>{rep.emails}</Text>
+
         </View>
       );
     });
@@ -90,7 +77,6 @@ class RepList extends Component {
       </View>
     )
 
->>>>>>> 2529a52a224e30c806f45a92fbc4a065a8999512
   }
 
 }
