@@ -16,22 +16,92 @@ import Header from './Header';
 
 
 
+
+import RepPage from './RepPage';
+
+
 class App extends Component {
   constructor(props) {
     super(props)
 
 
     this.state = {
-      selectedTab: 'home'
-    };
+      selectedTab: 'home',
+      latitude: '',
+      longitude: '',
+      address: {
+        street: '',
+        city: '',
+        state: '',
+        zipCode: ''
+      }
+    }
 
   }
 
+  componentDidMount() {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        let latitude = position.coords.latitude;
+        let longitude = position.coords.longitude;
+
+        this.setState({
+          latitude: latitude,
+          longitude: longitude
+        });
+        this.getAddressFromLatLong();
+      },
+      (error) => alert(JSON.stringify(error)),
+      {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
+    )
+  }
+
+
+  getAddressFromLatLong() {
+    fetch(`http://api.geonames.org/findNearestAddressJSON?lat=37.785834&lng=-122.406417&username=wethepeople`)
+    .then(function(response) {
+      return response.json()
+    })
+    .then(data => {
+      this.setState({
+        address: {
+          street: data.address.streetNumber+' '+data.address.street,
+          state: data.address.adminCode1,
+          zipCode: data.address.postalcode,
+          city: data.address.placename
+        }
+      });
+
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+  }
+
+  changeAddress(street, city, state, zipCode) {
+    this.setState({
+      address: {
+        street: street,
+        state: state,
+        zipCode: zipCode,
+        city: city
+      },
+      selectedTab: 'repPage'
+    });
+  }
+
+  _onMomentumScrollEnd (e, state, context) {
+    console.log(state, context.state)
+  }
 
 
   render() {
+
+    const address = this.state.address
+
     return(
-        <View style={ styles.app }>
+        <View style={styles.app}>
+
           <TabBarIOS
             barTintColor="#512DA8"
             tintColor="white"
@@ -40,6 +110,7 @@ class App extends Component {
             >
 
             <Icon.TabBarItem
+              style={ styles.bottomBar }
               title="Home"
               iconName="md-home"
               selectedIconName="md-home"
@@ -50,12 +121,30 @@ class App extends Component {
                 });
               }}>
               <View style={ styles.appContainer }>
-                <Home />
+                <Home address={ address } />
               </View>
             </Icon.TabBarItem>
 
             <Icon.TabBarItem
-              title="Change Zip"
+              title="Representatives"
+              iconName="ios-man"
+              selectedIconName="ios-man"
+              selected={this.state.selectedTab === 'repPage'}
+              onPress={() => {
+                this.setState({
+                  selectedTab: 'repPage'
+                });
+              }}>
+
+              <View style={ styles.appContainer }>
+                <Header />
+                <RepPage address={ address } />
+              </View>
+
+            </Icon.TabBarItem>
+
+            <Icon.TabBarItem
+              title="Change Location"
               iconName="ios-pin"
               selectedIconName="ios-pin"
               selected={this.state.selectedTab === 'changeLocal'}
@@ -67,7 +156,7 @@ class App extends Component {
 
               <View style={ styles.appContainer }>
                 <Header />
-                <ChangeLocal />
+                <ChangeLocal address={ address } changeAddress={ this.changeAddress.bind(this) } />
               </View>
 
             </Icon.TabBarItem>
@@ -84,7 +173,7 @@ class App extends Component {
               }}>
               <View style={ styles.appContainer }>
                 <Header />
-                <GoVote />
+                <GoVote address={ address } />
               </View>
             </Icon.TabBarItem>
 
@@ -102,7 +191,9 @@ const styles = StyleSheet.create({
   appContainer: {
     flex: 1,
     flexDirection: 'column',
-
+  },
+  bottomBar: {
+    flex: 1
   }
 
 });
