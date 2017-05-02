@@ -25,7 +25,6 @@ class Rep extends Component {
 }
 
 
-
 // const styles = StyleSheet.create ({
 
 

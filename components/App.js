@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-
 import {
   AppRegistry,
   StyleSheet,
@@ -26,10 +25,10 @@ class App extends Component {
       latitude: '',
       longitude: '',
       address: {
-        streetNumber: '',
         street: '',
         city: '',
-        state: ''
+        state: '',
+        zipCode: ''
       }
     }
 
@@ -45,12 +44,11 @@ class App extends Component {
           latitude: latitude,
           longitude: longitude
         });
+        this.getAddressFromLatLong();
       },
       (error) => alert(JSON.stringify(error)),
       {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
-    );
-
-    this.getAddressFromLatLong();
+    )
   }
 
 
@@ -59,28 +57,46 @@ class App extends Component {
     .then(function(response) {
       return response.json()
     })
-    .then(function(data) {
-      console.log(data)
-      // this.setState({
-      //   address: {
-      //     streetNumber: data.address.streetNumber,
-      //     street: data.address.street,
-      //     state: data.address.adminCode1
-      //
-      //   }
-      // })
+    .then(data => {
+      this.setState({
+        address: {
+          street: data.address.streetNumber+' '+data.address.street,
+          state: data.address.adminCode1,
+          zipCode: data.address.postalcode,
+          city: data.address.placename
+        }
+      });
+
     })
     .catch((error) => {
       console.error(error);
     });
   }
 
+  changeAddress(street, city, state, zipCode) {
+    this.setState({
+      address: {
+        street: street,
+        state: state,
+        zipCode: zipCode,
+        city: city
+      },
+      selectedTab: 'repPage'
+    });
+  }
 
+  _onMomentumScrollEnd (e, state, context) {
+    console.log(state, context.state)
+  }
 
 
   render() {
+
+    const address = this.state.address
+
     return(
-        <View style={ styles.app }>
+        <View style={styles.app}>
+
           <TabBarIOS
             barTintColor="#512DA8"
             tintColor="white"
@@ -89,6 +105,7 @@ class App extends Component {
             >
 
             <Icon.TabBarItem
+              style={ styles.bottomBar }
               title="Home"
               iconName="md-home"
               selectedIconName="md-home"
@@ -99,7 +116,7 @@ class App extends Component {
                 });
               }}>
               <View style={ styles.appContainer }>
-                <Home />
+                <Home address={ address } />
               </View>
             </Icon.TabBarItem>
 
@@ -116,7 +133,7 @@ class App extends Component {
 
               <View style={ styles.appContainer }>
                 <Header />
-                <RepPage />
+                <RepPage address={ address } />
               </View>
 
             </Icon.TabBarItem>
@@ -134,7 +151,7 @@ class App extends Component {
 
               <View style={ styles.appContainer }>
                 <Header />
-                <ChangeLocal/>
+                <ChangeLocal address={ address } changeAddress={ this.changeAddress.bind(this) } />
               </View>
 
             </Icon.TabBarItem>
@@ -151,7 +168,7 @@ class App extends Component {
               }}>
               <View style={ styles.appContainer }>
                 <Header />
-                <GoVote />
+                <GoVote address={ address } />
               </View>
             </Icon.TabBarItem>
 
@@ -169,7 +186,9 @@ const styles = StyleSheet.create({
   appContainer: {
     flex: 1,
     flexDirection: 'column',
-
+  },
+  bottomBar: {
+    flex: 1
   }
 
 });

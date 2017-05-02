@@ -18,8 +18,9 @@ class Home extends Component {
 
 
 
-
   render() {
+    const address = this.props.address;
+
     return(
       <View style={ styles.home }>
         <View style={ styles.homeLogo }>
@@ -28,11 +29,12 @@ class Home extends Component {
           </Image>
         </View>
         <View style={ styles.homeVal }>
-          <View style={styles.homeText}>
-            <Text>We see you're located in</Text>
-            <Text style={ styles.location }>Austin, TX 78701</Text>
-            <Text>Is this where you are registered to vote?</Text>
-          </View>
+
+          <Text>We see you're located at</Text>
+          <Text style={ styles.location }>{ address.street }</Text>
+          <Text style={ styles.location }>{ address.city }, { address.state} { address.zipCode }</Text>
+          <Text>Is this where you are registered to vote?</Text>
+
           <View style= { styles.valButtons}>
             <View style={styles.buttonContainer}>
               <TouchableHighlight underlayColor="green" style={ styles.button }>
