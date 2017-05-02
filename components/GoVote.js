@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Map from './Map';
 
 import {
   AppRegistry,
@@ -19,6 +20,8 @@ class GoVote extends Component {
         <Text>
           Go Vote
         </Text>
+          <Map />
+        
       </View>
 
     )
