@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import { TabViewAnimated, TabBar } from 'react-native-tab-view';
+
 import {
   AppRegistry,
   StyleSheet,
@@ -9,15 +11,65 @@ import {
 } from 'react-native';
 
 import FederalReps from './FederalReps';
+import StateReps from './StateReps';
+import LocalReps from './LocalReps';
 
 
 class RepPage extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      index: 0,
+      routes: [
+      { key: '1', title: 'Federal' },
+      { key: '2', title: 'State' },
+      { key: '3', title: 'Local'}
+      ],
+    }
+  }
+
+  _handleChangeTab = (index) => {
+    this.setState({ index });
+  };
+
+  _renderHeader = (props) => {
+    return <TabBar
+      {...props}
+      tabStyle={ styles.tabs }
+      indicatorStyle={ styles.indicator }
+      style={ styles.tabbar }
+      labelStyle={ styles.label }
+    />;
+  };
+
+  _renderScene = ({ route }) => {
+    switch (route.key) {
+    case '1':
+      return <FederalReps />;
+    case '2':
+      return <StateReps />;
+    case '3':
+      return <LocalReps />;
+    default:
+      return null;
+    }
+  };
+
+
   render() {
+
+    const address = this.props.address
+
     return(
-      <View style={ styles.repPage }>
-        <Text>Rep Page</Text>
-        <FederalReps />
-      </View>
+      <TabViewAnimated
+        address={ address }
+        style={ styles.repPage }
+        navigationState={this.state}
+        renderScene={this._renderScene}
+        renderHeader={this._renderHeader}
+        onRequestChangeTab={this._handleChangeTab}
+      />
     )
   }
 }
@@ -25,6 +77,24 @@ class RepPage extends Component {
 const styles = StyleSheet.create({
   repPage: {
     flex: 9
+  },
+  page: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  tabbar: {
+    backgroundColor: '#FFFFFF'
+  },
+  tabs: {
+
+  },
+  indicator: {
+    backgroundColor: 'black'
+  },
+  label: {
+    color: 'black',
+
   }
 });
 
