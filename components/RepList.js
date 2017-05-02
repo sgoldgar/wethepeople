@@ -33,6 +33,7 @@ class RepList extends Component {
     if(!this.props.reps.length){
       return(<Text>Loading..</Text>)
     }
+
     return (
       <View style={{flex: 1, paddingTop: 22}}>
            <ListView

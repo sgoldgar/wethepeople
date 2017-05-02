@@ -1,34 +1,35 @@
 import  React, { Component } from 'react';
-import { AppRegistry } from 'react-native';
+import {
+  AppRegistry,
+  Text,
+  ListView,
+  ScrollView,
+  View,
+  StyleSheet,
+  Image,
+  Animated
+} from 'react-native';
 
-class Rep extends Component {
-  constructor(props){
-    super(props);
-    this.state = {text: '' };
-  }
 
-  render(){
-    return(
-    <View style={styles.rowContainer}>
-          <Image source= {{photoUrl}} />
-          <TextInput
-          name={john}
-          address={101}
-          party={R}
-          email={email}
-          phones={1234567890}
-
-          />
-        </View>
-    );
-  }
+const Rep = props => {
+  let {imageUrl, name, party, phones, emails} = props.Rep
+  return(
+    <View style={styles.container}>
+    <Image source={imageUrl} />
+      <Text> john doe </Text>
+      <Text> party </Text>
+      <Text> phones </Text>
+      <Text> emails</Text>
+    </View>
+    )
 }
 
 
-// const styles = StyleSheet.create ({
 
 
-// })
+
+
+
 
 export default Rep;
 
