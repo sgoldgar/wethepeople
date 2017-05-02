@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 import Map from './Map';
 
 import {
@@ -21,7 +22,7 @@ class GoVote extends Component {
           Go Vote
         </Text>
           <Map />
-        
+
       </View>
 
     )
