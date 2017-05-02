@@ -28,10 +28,13 @@ class ChangeLocal extends Component {
   }
 
   updateAddress(e) {
+
     const address = this.state.addressInput;
     const city = this.state.cityInput;
     const usState = this.state.stateInput;
     const zip = this.state.zipInput;
+
+    console.log('is it updating: ', address, city, usState, zip)
 
     this.props.changeAddress(address, city, usState, zip);
 
@@ -50,10 +53,11 @@ class ChangeLocal extends Component {
         </Text>
         <View style={ styles.inputBlock }>
           <View style={ styles.textInput }>
+
             <TextInput
               ref="address"
               style={ styles.input }
-              onChange={ input => this.setState({ addressInput: input }) }
+              onChangeText={ input => this.setState({ addressInput: input }) }
               placeholder="Address"
               value={ this.state.addressInput }
               returnKeyType='next'
@@ -137,15 +141,13 @@ inputBlock: {
 
 },
 textInput: {
-
+height: 60,
 },
 input: {
   flex: 1,
   textAlign: 'left',
   margin: 20,
   paddingLeft: '10%',
-
-  height: 30,
 
 
 },

@@ -57,6 +57,7 @@ class App extends Component {
   }
 
 
+
   getAddressFromLatLong() {
     fetch(`http://api.geonames.org/findNearestAddressJSON?lat=37.785834&lng=-122.406417&username=wethepeople`)
     .then(function(response) {
@@ -79,6 +80,7 @@ class App extends Component {
   }
 
   changeAddress(street, city, state, zipCode) {
+
     this.setState({
       address: {
         street: street,
@@ -100,6 +102,7 @@ class App extends Component {
   render() {
 
     const address = this.state.address
+    console.log('what app is seeing: ', this.state.address)
 
     return(
         <View style={styles.app}>
@@ -140,7 +143,7 @@ class App extends Component {
 
               <View style={ styles.appContainer }>
                 <Header />
-                <RepPage address={ address } />
+                <RepPage address={ this.state.address } />
               </View>
 
             </Icon.TabBarItem>
