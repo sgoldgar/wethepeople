@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-// import Rep from './Rep.js';
+import Rep from './Rep.js';
 import {
   AppRegistry,
   StyleSheet,
   ListView,
   Text,
-  View
+  View,
+  Animated
 } from 'react-native';
 
 const googleApiKey = 'AIzaSyB6NrpRei3RgGwXreJOfnM3f9hSeX1wtns';
@@ -46,7 +47,10 @@ class RepList extends Component {
 
   render() {
       return (
+        <View>
           <Text>{this.state.reps}</Text>
+          <Rep />
+          </View>
       )
   }
 }

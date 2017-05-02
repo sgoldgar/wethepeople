@@ -1,35 +1,63 @@
-import  React, { Component } from 'react';
-import { AppRegistry } from 'react-native';
+import  React, { Component, PropTypes } from 'react';
+import {
+  AppRegistry,
+  Text,
+  ListView,
+  ScrollView,
+  View,
+  StyleSheet,
+  Image,
+  Animated
+} from 'react-native';
 
-class Rep extends Component {
-  constructor(props){
+
+class HideableView extends Component {
+  constructor(props) {
     super(props);
-    this.state = {text: '' };
+    this.state = {
+      opacity: new Animated.Value(this.props.visible ? 1 : 0)
+    }
   }
 
-  render(){
-    return(
-    <View style={styles.rowContainer}>
-          <Image source= {{photoUrl}} />
-          <TextInput
-          name={john}
-          address={101}
-          party={R}
-          email={email}
-          phones={1234567890}
+  animate(show) {
+    const duration = this.props.duration ? parseInt(this.props.duration) : 500;
+    Animated.timing(
+      this.state.opacity, {
+        toValue: show ? 1 : 0,
+        duration: !this.props.noAnimation ? duration : 0
+      }
+    ).start();
+  }
 
-          />
-        </View>
-    );
+  shouldComponentUpdate(nextProps) {
+    return this.props.visible !== nextProps.visible;
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    if (this.props.visible !== nextProps.visible) {
+      this.animate(nextProps.visible);
+    }
+  }
+
+  render() {
+    if (this.props.removeWhenHidden) {
+      return (this.visible && this.props.children);
+    }
+    return (
+      <Animated.View style={{opacity: this.state.opacity}}>
+        {this.props.children}
+      </Animated.View>
+    )
   }
 }
 
+HideableView.propTypes = {
+  visible: PropTypes.bool,
+  duration: PropTypes.number,
+  removeWhenHidden: PropTypes.bool,
+  noAnimation: PropTypes.bool
+}
 
-// const styles = StyleSheet.create ({
-
-
-// })
-
-export default Rep;
+export default HideableView;
 
 

@@ -5,7 +5,8 @@ import {
   StyleSheet,
   View,
   Text,
-  TabBarIOS
+  TabBarIOS,
+  Animated
 } from 'react-native';
 
 import FederalReps from './FederalReps';
