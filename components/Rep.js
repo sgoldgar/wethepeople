@@ -1,33 +1,3 @@
-// import  React, { Component } from 'react';
-// import {
-//   AppRegistry,
-//   Text,
-//   ListView,
-//   ScrollView,
-//   View,
-//   StyleSheet,
-//   Image,
-//   Animated
-// } from 'react-native';
-
-
-// class Rep extends Component {
-//   constructor(props){
-//     super(props)
-//   }
-// }
-
-// render(){
-//   return(
-//     <Text>name</Text>
-//     )
-// }
-
-
-
-
-// export default Rep;
-
 
 import  React, { Component } from 'react';
 
@@ -41,19 +11,33 @@ import {
   TouchableOpacity,
   View
 } from 'react-native';
-
+import Communications from 'react-native-communications';
+import Icon from 'react-native-vector-icons/FontAwesome'
 class Rep extends Component {
   constructor(props){
     super(props);
   }
 
   render(){
-    console.log(this.props.dataSource[0].name)
     return(
     <View style={styles.rowContainer}>
-      <Text>{this.props.dataSource.name}</Text>
-      <Text>Hi</Text>
-    </View>
+      <Text style={styles.holder}>image</Text>
+      <Text style={styles.holder}>Name</Text>
+      <Text style={styles.holder}>Party</Text>
+      <Text style={styles.holder}>Chamber</Text>
+      <Text style={styles.holder}>Address</Text>
+        <TouchableOpacity onPress={() => Communications.phonecall('0123456789', true)}>
+          <View style={styles.holder}>
+            <Icon style={styles.icon} name="phone" color="#549E95" />
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => Communications.email(['emailAddress1', 'emailAddress2'],null,null,'My Subject','My body text')}>
+          <View style={styles.holder}>
+            <Icon style={styles.icon} name="envelope" color="#549E95" />
+          </View>
+        </TouchableOpacity>
+
+          </View>
     );
   }
 }
@@ -62,9 +46,22 @@ class Rep extends Component {
 const styles = StyleSheet.create ({
   rowContainer:{
     flex: 1,
-    flexDirection: 'row'
-  }
-
-})
+    flexDirection: 'row',
+    justifyContent: 'center'
+  },
+  image:{
+    backgroundColor: 'black',
+    height: 20,
+    width: 20,
+    borderRadius: 50
+  },
+holder: {
+  color: '#141414',
+  marginHorizontal: 5
+  },
+  icon: {
+    fontSize: 30
+  },
+});
 
 export default Rep;

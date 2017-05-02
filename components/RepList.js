@@ -38,6 +38,7 @@ class RepList extends Component {
 
   render() {
 
+
     if(!this.props.reps.length){
       return(<Text>Loading..</Text>)
     }
@@ -52,10 +53,10 @@ class RepList extends Component {
           //return <Rep reps={ data } />
          }}
        />
+
     )
   } //end render
 
 } //end component
-
 
 export default RepList;
