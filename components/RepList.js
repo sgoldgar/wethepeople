@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
-// import Rep from './Rep.js';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import Communications from 'react-native-communications';
+
+
 import {
   AppRegistry,
   StyleSheet,
   ListView,
   Text,
   Image,
+  Button,
+  TouchableOpacity,
   View
 } from 'react-native';
 
@@ -56,11 +61,10 @@ class RepList extends Component {
       console.log('rep is: ', rep)
       return (
         <View>
-        <Image source={{uri: rep.photoUrl}}/>
-        <Text>{rep.name}</Text>
-        <Text>{rep.party}</Text>
-        {/*<Text>{rep.phones[0]}</Text>*/}
-        {/*<Text>{rep.emails}</Text>*/}
+        <Image style={styles.lineItem} source={{uri: rep.photoUrl}}/>
+        <Text style={styles.lineItem}>{rep.name}</Text>
+        <Text style={styles.lineItem}>{rep.party}</Text>
+        <Text style={styles.lineItem}>{rep.phones[0]}</Text>
         </View>
       );
     });
@@ -74,6 +78,28 @@ class RepList extends Component {
   }
 
 }
+
+
+
+// <TouchableOpacity onPress={() => Communications.phonecall('0123456789', true)}>
+//   <View style={styles.holder}>
+//     <Text style={styles.text}>Make phonecall</Text>
+//   </View>
+// </TouchableOpacity>
+// <TouchableOpacity onPress={() => Communications.email(rep.emails, null ,null,null,'My Subject','My body text')}>
+//   <View style={styles.holder}>
+//     <Icon.Button name="mail" backgroundColor="#141414" accessibilityLabel="Email your rep">
+//     </Icon.Button>
+//   </View>
+// </TouchableOpacity>
+
+
+const styles = StyleSheet.create({
+  holder: {
+    flex: 0.25,
+    justifyContent: 'center',
+  },
+});
 
 // App registration and rendering
 export default RepList;
