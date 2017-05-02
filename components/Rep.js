@@ -21,22 +21,20 @@ class Rep extends Component {
   render(){
     return(
     <View style={styles.rowContainer}>
-      <Text style={styles.holder}>image</Text>
-      <Text style={styles.holder}>Name</Text>
-      <Text style={styles.holder}>Party</Text>
-      <Text style={styles.holder}>Chamber</Text>
-      <Text style={styles.holder}>Address</Text>
-        <TouchableOpacity onPress={() => Communications.phonecall('0123456789', true)}>
+      <Text style={styles.holder}>{this.props.reps.name}</Text>
+      <Text style={styles.holder}>{this.props.reps.party}</Text>
+      <Text style={styles.holder}>{this.props.reps.address[0].line1}</Text>
+      <Text style={styles.holder}>{this.props.reps.address[0].city }</Text>
+        <TouchableOpacity onPress={() => Communications.phonecall('{this.props.reps.phones}', true)}>
           <View style={styles.holder}>
             <Icon style={styles.icon} name="phone" color="#549E95" />
           </View>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => Communications.email(['emailAddress1', 'emailAddress2'],null,null,'My Subject','My body text')}>
+        <TouchableOpacity onPress={() => Communications.email('{this.props.reps.urls}',null,null,'My Subject','My body text')}>
           <View style={styles.holder}>
             <Icon style={styles.icon} name="envelope" color="#549E95" />
           </View>
         </TouchableOpacity>
-
           </View>
     );
   }
