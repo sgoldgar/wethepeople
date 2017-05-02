@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-
 import {
   AppRegistry,
   StyleSheet,
@@ -13,7 +12,8 @@ import {
 import Home from './Home';
 import ChangeLocal from './ChangeLocal';
 import GoVote from './GoVote';
-import Header from './Header'
+import Header from './Header';
+
 
 
 class App extends Component {
