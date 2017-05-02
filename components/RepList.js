@@ -59,12 +59,29 @@ class RepList extends Component {
 
     const repsList = this.state.reps.map((rep) => {
       console.log('rep is: ', rep)
+      console.log('social medias for rep:', rep.channels)
       return (
-        <View>
-        <Image style={styles.lineItem} source={{uri: rep.photoUrl}}/>
-        <Text style={styles.lineItem}>{rep.name}</Text>
-        <Text style={styles.lineItem}>{rep.party}</Text>
-        <Text style={styles.lineItem}>{rep.phones[0]}</Text>
+        <View key={Math.random()}>
+          <Text style={styles.lineItem}>{rep.address[0].line1}</Text>
+          <Text style={styles.lineItem}>{rep.address[0].city}{rep.address[0].state}{rep.address[0].zip}</Text>
+          <Text style={styles.lineItem}>{rep.photoUrl}</Text>
+          <Text style={styles.lineItem}>{rep.name}</Text>
+          <Text style={styles.lineItem}>{rep.party}</Text>
+          <Text style={styles.lineItem}>{rep.phones[0]}</Text>
+          <Text style={styles.lineItem}>{rep.emails}</Text>
+          <Text style={styles.lineItem}>{rep.urls[0]}</Text>
+
+          <TouchableOpacity onPress={() => Communications.phonecall('0123456789', true)}>
+            <View style={styles.holder}>
+              <Text style={styles.text}>Make phonecall</Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => Communications.email(rep.emails, null ,null,null,'My Subject','My body text')}>
+            <View style={styles.holder}>
+              <Icon.Button name="mail" backgroundColor="#141414" accessibilityLabel="Email your rep">
+              </Icon.Button>
+            </View>
+          </TouchableOpacity>
         </View>
       );
     });
@@ -81,17 +98,7 @@ class RepList extends Component {
 
 
 
-// <TouchableOpacity onPress={() => Communications.phonecall('0123456789', true)}>
-//   <View style={styles.holder}>
-//     <Text style={styles.text}>Make phonecall</Text>
-//   </View>
-// </TouchableOpacity>
-// <TouchableOpacity onPress={() => Communications.email(rep.emails, null ,null,null,'My Subject','My body text')}>
-//   <View style={styles.holder}>
-//     <Icon.Button name="mail" backgroundColor="#141414" accessibilityLabel="Email your rep">
-//     </Icon.Button>
-//   </View>
-// </TouchableOpacity>
+
 
 
 const styles = StyleSheet.create({
