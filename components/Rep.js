@@ -50,7 +50,11 @@ class Rep extends Component {
   render(){
     return(
     <View style={styles.rowContainer}>
+
       <Text>Hi</Text>
+
+      <Text>asldjasldkjasdsa</Text>
+
     </View>
     );
   }
