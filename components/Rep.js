@@ -1,33 +1,3 @@
-// import  React, { Component } from 'react';
-// import {
-//   AppRegistry,
-//   Text,
-//   ListView,
-//   ScrollView,
-//   View,
-//   StyleSheet,
-//   Image,
-//   Animated
-// } from 'react-native';
-
-
-// class Rep extends Component {
-//   constructor(props){
-//     super(props)
-//   }
-// }
-
-// render(){
-//   return(
-//     <Text>name</Text>
-//     )
-// }
-
-
-
-
-// export default Rep;
-
 
 import  React, { Component } from 'react';
 
@@ -41,6 +11,7 @@ import {
   TouchableOpacity,
   View
 } from 'react-native';
+import Communications from 'react-native-communications';
 
 class Rep extends Component {
   constructor(props){
@@ -48,12 +19,25 @@ class Rep extends Component {
   }
 
   render(){
-    console.log(this.props.dataSource[0].name)
     return(
     <View style={styles.rowContainer}>
-      <Text>{this.props.dataSource.name}</Text>
-      <Text>Hi</Text>
-    </View>
+      <Text>image</Text>
+      <Text>Name</Text>
+      <Text>Party</Text>
+      <Text>Chamber</Text>
+      <Text>Address</Text>
+        <TouchableOpacity onPress={() => Communications.phonecall('0123456789', true)}>
+          <View style={styles.holder}>
+            <Text style={styles.text}>Make phonecall</Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => Communications.email(['emailAddress1', 'emailAddress2'],null,null,'My Subject','My body text')}>
+          <View style={styles.holder}>
+            <Text style={styles.text}>Send an email</Text>
+          </View>
+        </TouchableOpacity>
+
+          </View>
     );
   }
 }
@@ -62,9 +46,21 @@ class Rep extends Component {
 const styles = StyleSheet.create ({
   rowContainer:{
     flex: 1,
-    flexDirection: 'row'
-  }
+    flexDirection: 'column',
+    alignItems: 'center'
+  },
+  image:{
+    backgroundColor: 'black',
+    height: 20,
+    width: 20,
+    borderRadius: 50
+  },
+holder: {
 
-})
+  },
+  text: {
+    fontSize: 12
+  },
+});
 
 export default Rep;

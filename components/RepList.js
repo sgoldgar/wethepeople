@@ -30,17 +30,11 @@ class RepList extends Component {
   }
 
   render() {
-    if(!this.props.reps.length){
-      console.log('testing: ', this.props.reps)
-      return(<Text>Loading..</Text>)
-    }
+
     return (
-       <ListView
-         enableEmptySections={true}
-         dataSource={this.state.dataSource}
-         renderRow={data => <Rep dataSource={data}/>}
-       />
+     <Rep />
     )
   } //end render
 
 } //end component
+export default RepList;
