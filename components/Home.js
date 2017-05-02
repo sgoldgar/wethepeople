@@ -19,7 +19,6 @@ class Home extends Component {
 
   render() {
     const address = this.props.address;
-    console.log('address: ', address)
 
     return(
       <View style={ styles.home }>
@@ -30,7 +29,7 @@ class Home extends Component {
         </View>
         <View style={ styles.homeVal }>
           <Text>We see you're located at</Text>
-          <Text style={ styles.location }>{ address.streetNumber } { address.street }</Text>
+          <Text style={ styles.location }>{ address.street }</Text>
           <Text style={ styles.location }>{ address.city }, { address.state} { address.zipCode }</Text>
           <Text>Is this where you are registered to vote?</Text>
           <View style= { styles.valButtons}>
