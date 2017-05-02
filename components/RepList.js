@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
-// import Rep from './Rep.js';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import Communications from 'react-native-communications';
+
+
 import {
   AppRegistry,
   StyleSheet,
   ListView,
   Text,
+  Image,
+  Button,
+  TouchableOpacity,
   View
 } from 'react-native';
 
@@ -22,40 +28,78 @@ class RepList extends Component {
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     //set state to be the list of reps from the parent container, repsData will need to be an array of objects
     this.state = {
-      reps: [],
-      // dataSource: ds.cloneWithRows(repsData),
+      reps: []
     }
-
-
   }
 
 
   componentDidMount(){
     fetch('https://www.googleapis.com/civicinfo/v2/representatives?key=AIzaSyB6NrpRei3RgGwXreJOfnM3f9hSeX1wtns&address=1200%20Bentwood%20Rd.%20Austin%20TX&roles=legislatorUpperBody')
-      .then(function(response) {
+      .then((response) => {
         return response.json()
         console.log(response.json());
       })
-      .then(function(response) {
-        console.log(response);
-        console.log(response.officials)
-        // this.setState({ reps: response.officials });
+      .then((response) => {
+        console.log('response: ',response);
+        console.log('response.officials: ',response.officials);
+
+        this.setState({
+          reps: response.officials
+         });
+
+         console.log('this.state.reps: ', this.state.reps)
       })
   }
 
 
   render() {
+    if(!this.state.reps.length){
+      return(<Text>Loading..</Text>)
+    }
+
+    const repsList = this.state.reps.map((rep) => {
+      console.log('rep is: ', rep)
       return (
-          <Text>{this.state.reps}</Text>
-      )
+        <View>
+        <Image style={styles.lineItem} source={{uri: rep.photoUrl}}/>
+        <Text style={styles.lineItem}>{rep.name}</Text>
+        <Text style={styles.lineItem}>{rep.party}</Text>
+        <Text style={styles.lineItem}>{rep.phones[0]}</Text>
+        </View>
+      );
+    });
+
+    return (
+      <View>
+        {repsList}
+      </View>
+    )
+
   }
+
 }
+
+
+
+// <TouchableOpacity onPress={() => Communications.phonecall('0123456789', true)}>
+//   <View style={styles.holder}>
+//     <Text style={styles.text}>Make phonecall</Text>
+//   </View>
+// </TouchableOpacity>
+// <TouchableOpacity onPress={() => Communications.email(rep.emails, null ,null,null,'My Subject','My body text')}>
+//   <View style={styles.holder}>
+//     <Icon.Button name="mail" backgroundColor="#141414" accessibilityLabel="Email your rep">
+//     </Icon.Button>
+//   </View>
+// </TouchableOpacity>
+
+
+const styles = StyleSheet.create({
+  holder: {
+    flex: 0.25,
+    justifyContent: 'center',
+  },
+});
 
 // App registration and rendering
 export default RepList;
-
-// <ListView
-//    style={styles.container}
-//    dataSource={this.state.dataSource}
-//    renderRow={(data) => <View><Text>{data}</Text></View>}
-// />
