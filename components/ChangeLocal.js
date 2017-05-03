@@ -95,7 +95,7 @@ class ChangeLocal extends Component {
               } }
             />
           </View>
-          <View>
+          <View style={ styles.textInput }>
             <TextInput
               ref="zip"
               style={ styles.input }
@@ -188,7 +188,7 @@ buttonText:{
   paddingVertical: 10,
   textAlign: 'center',
   fontSize: 20
-}
+},
 
 });
 
