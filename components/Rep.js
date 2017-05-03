@@ -17,20 +17,33 @@ class Rep extends Component {
     super(props);
   }
 
+  callPhone() {
+    console.log(this.props.reps.info.phones)
+    if(this.props.reps.info.phones) {
+      Communications.phonecall( this.props.reps.info.phones[0], true)
+    }
+  }
+
+  emailEmail() {
+    console.log(this.props.reps.info.emails)
+    if(this.props.reps.info.emails) { Communications.email(this.props.reps.info.emails,null,null,null,null)}
+  }
+
   render(){
+
     return(
     <View style={styles.rowContainer}>
-      <Text style={styles.holder}>{this.props.reps.name}</Text>
-      <Text style={styles.holder}>{this.props.reps.party}</Text>
-      <Text style={styles.holder}>{this.props.reps.address[0].line1}</Text>
-      <Text style={styles.holder}>{this.props.reps.address[0].city }</Text>
-        <TouchableOpacity onPress={() => Communications.phonecall('{this.props.reps.phones}', true)}>
-          <View style={styles.holder}>
+      <Text style={styles.holder}>{this.props.reps.info.name}</Text>
+      <Text style={styles.holder}>{this.props.reps.info.party}</Text>
+      {/* <Text style={styles.holder}>{this.props.reps.info.address[0].line1}</Text>
+      <Text style={styles.holder}>{this.props.reps.info.address[0].city }</Text> */}
+        <TouchableOpacity onPress={ () => this.callPhone() }>
+          <View>
             <Icon style={styles.icon} name="phone" color="#549E95" />
           </View>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => Communications.email('{this.props.reps.urls}',null,null,'My Subject','My body text')}>
-          <View style={styles.holder}>
+        <TouchableOpacity onPress={() => this.emailEmail() }>
+          <View>
             <Icon style={styles.icon} name="envelope" color="#549E95" />
           </View>
         </TouchableOpacity>
