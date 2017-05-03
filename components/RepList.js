@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Rep from './Rep';
 // import Icon from 'react-native-vector-icons/MaterialIcons';
 // import Communications from 'react-native-communications';
-
+import moreInfo from './moreInfo';
 
 import {
   AppRegistry,

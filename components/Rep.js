@@ -11,7 +11,9 @@ import {
   View
 } from 'react-native';
 import Communications from 'react-native-communications';
-import Icon from 'react-native-vector-icons/FontAwesome'
+import Icon from 'react-native-vector-icons/FontAwesome';
+import moreInfo from './moreInfo'
+
 class Rep extends Component {
   constructor(props){
     super(props);
@@ -22,8 +24,6 @@ class Rep extends Component {
     <View style={styles.rowContainer}>
       <Text style={styles.holder}>{this.props.reps.name}</Text>
       <Text style={styles.holder}>{this.props.reps.party}</Text>
-      <Text style={styles.holder}>{this.props.reps.address[0].line1}</Text>
-      <Text style={styles.holder}>{this.props.reps.address[0].city }</Text>
         <TouchableOpacity onPress={() => Communications.phonecall('{this.props.reps.phones}', true)}>
           <View style={styles.holder}>
             <Icon style={styles.icon} name="phone" color="#549E95" />
