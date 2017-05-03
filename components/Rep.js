@@ -81,10 +81,12 @@ class Rep extends Component {
   render(){
 
     return(
+
       <View style={ styles.repContainer }>
         <View style={ styles.rowContainer }>
           <View style={ styles.rowTitle }>
             <Text style={ styles.titleText }>{ this.props.reps.title }</Text>
+
           </View>
           <View style={styles.rowInfo}>
             <TouchableOpacity onPress={ () => this.clickForInfo() }>
