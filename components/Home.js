@@ -8,14 +8,18 @@ import {
   TabBarIOS,
   Button,
   TouchableHighlight,
-  Image
+  Image,
+  StatusBar
 } from 'react-native';
 
-import heroImage from '../assets/images/hero_resized_filter.jpg';
+import heroImage from '../assets/images/caleb-wright-14716.jpg';
 
 
 class Home extends Component {
 
+componentDidMount() {
+  StatusBar.setBarStyle('light-content', true)
+}
 
 
   render() {
@@ -29,20 +33,29 @@ class Home extends Component {
           </Image>
         </View>
         <View style={ styles.homeVal }>
-
-          <Text>We see you're located at</Text>
-          <Text style={ styles.location }>{ address.street }</Text>
-          <Text style={ styles.location }>{ address.city }, { address.state} { address.zipCode }</Text>
-          <Text>Is this where you are registered to vote?</Text>
+          <View style={styles.homeText}>
+            <Text>We see you're located at</Text>
+            <Text style={ styles.locationStreet }>{ address.street }</Text>
+            <Text style={ styles.locationCity }>{ address.city }, { address.state} { address.zipCode }</Text>
+            <Text>Is this where you are registered to vote?</Text>
+          </View>
 
           <View style= { styles.valButtons}>
             <View style={styles.buttonContainer}>
-              <TouchableHighlight underlayColor="green" style={ styles.button }>
+              <TouchableHighlight
+                underlayColor="green"
+                style={ styles.button }
+                onPress={ () => this.props.changePage('repPage') }
+                >
                 <Text style={ styles.buttonText }>Yes! Take me to my reps</Text>
               </TouchableHighlight>
             </View>
               <View style={styles.buttonContainer}>
-                <TouchableHighlight underlayColor="green" style={ styles.button }>
+                <TouchableHighlight
+                  underlayColor="green"
+                  style={ styles.button }
+                  onPress={ () => this.props.changePage('changeLocal') }
+                  >
                   <Text style={ styles.buttonText }>No, I'll input my address</Text>
                 </TouchableHighlight>
               </View>
@@ -56,40 +69,53 @@ class Home extends Component {
 
 const styles = StyleSheet.create({
   home:{
-    flexDirection: 'column'
-  },
-  homeLogo: {
     flex: 1,
     flexDirection: 'column'
   },
+  homeLogo: {
+    flex: 2,
+    flexDirection: 'column',
+
+
+  },
   hero:{
-    marginTop: 30 ,
-    resizeMode: 'cover',
     alignItems: 'center',
-    height: 200,
-    width: 400
+    width: null,
+    height: null,
+    resizeMode: 'cover'
+
+
   },
   logo:{
     fontFamily: 'Zapfino',
-    fontSize: 30,
+    fontSize: 33,
+    fontWeight: '700',
     backgroundColor: 'transparent',
     color: 'white',
     alignItems: 'center',
     flexDirection: 'column',
-    marginTop: '25%',
+    marginTop: '50%',
+
   },
   homeVal:{
+    flex: 3,
     flexDirection: 'column',
-    marginTop:'80%'
+    marginTop: '30%'
+
+
   },
   homeText:{
     flexDirection: 'column',
     alignItems: 'center',
-    marginBottom: 20
+    marginBottom: 40,
   },
-  location:{
+  locationStreet:{
     fontSize: 20,
-    marginVertical: 10
+    marginTop: 10
+  },
+  locationCity:{
+    fontSize: 20,
+    marginBottom: 10
   },
   valButtons:{
     flexDirection:'row'
@@ -114,8 +140,8 @@ const styles = StyleSheet.create({
   },
   buttonText:{
     color: 'white',
-    marginLeft: '10%',
     paddingVertical: 10,
+    textAlign: 'center'
   }
 
 });

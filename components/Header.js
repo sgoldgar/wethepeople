@@ -5,13 +5,12 @@ import {
   StyleSheet,
   View,
   Text,
-  TabBarIOS
+  TabBarIOS,
+  StatusBar
 } from 'react-native';
 
 
 class Home extends Component {
-
-
 
 
   render() {
@@ -37,6 +36,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Zapfino',
     flex: 1,
     marginTop: 20,
+    color: '#FFFFFF'
   }
 });
 

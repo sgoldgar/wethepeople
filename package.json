@@ -9,7 +9,10 @@
   "dependencies": {
     "react": "16.0.0-alpha.6",
     "react-native": "0.43.4",
+    "react-native-hideable-view": "^1.0.3",
+    "react-native-toggle": "^1.0.3",
     "react-native-communications": "^2.2.1",
+    "react-native-tab-view": "0.0.62",
     "react-native-vector-icons": "^4.0.1",
     "rnpm": "^1.9.0"
   },

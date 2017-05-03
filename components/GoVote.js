@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 import Map from './Map';
 import Location from './Location';
 import LocationList from './LocationList';
@@ -22,8 +23,7 @@ class GoVote extends Component {
         <Text>
           Go Vote
         </Text>
-          <Location />
-          <LocationList />
+
 
       </View>
 

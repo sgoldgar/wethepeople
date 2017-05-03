@@ -28,10 +28,13 @@ class ChangeLocal extends Component {
   }
 
   updateAddress(e) {
+
     const address = this.state.addressInput;
     const city = this.state.cityInput;
     const usState = this.state.stateInput;
     const zip = this.state.zipInput;
+
+    console.log('is it updating: ', address, city, usState, zip)
 
     this.props.changeAddress(address, city, usState, zip);
 
@@ -50,6 +53,7 @@ class ChangeLocal extends Component {
         </Text>
         <View style={ styles.inputBlock }>
           <View style={ styles.textInput }>
+
             <TextInput
               ref="address"
               style={ styles.input }
@@ -91,7 +95,7 @@ class ChangeLocal extends Component {
               } }
             />
           </View>
-          <View>
+          <View style={ styles.textInput }>
             <TextInput
               ref="zip"
               style={ styles.input }
@@ -102,12 +106,14 @@ class ChangeLocal extends Component {
             />
           </View>
         </View>
-        <TouchableHighlight
-          style={ styles.submit}
-          onPress={ this.updateAddress.bind(this) }
-          >
-          <Text style={ styles.submitText }>See your Representatives!</Text>
-        </TouchableHighlight>
+        <View style={styles.buttonContainer}>
+          <TouchableHighlight
+            style={ styles.button }
+            onPress={ this.updateAddress.bind(this) }
+            >
+            <Text style={ styles.buttonText }>See your Representatives!</Text>
+          </TouchableHighlight>
+        </View>
       </View>
 
     )
@@ -119,42 +125,70 @@ changeLocal: {
   flex: 9,
   flexDirection: 'column',
   justifyContent: 'center'
+},
 
-},
 question: {
-  flex: 1,
   textAlign: 'center',
-  fontSize: 30,
-  marginTop: 10,
+  fontSize: 25,
+  marginHorizontal: 10,
+  marginTop: 40,
+  marginBottom: 20
 },
+
 inputBlock: {
   flex: 2,
   flexDirection: 'column',
+  marginLeft: 40,
+  alignContent: 'center',
   justifyContent: 'center',
-  borderBottomWidth: 1,
-  borderTopWidth: 1
+  width: 300,
+  marginBottom: 50,
+  shadowColor: '#141414',
+  shadowOffset: {
+    width: 0,
+    height: 3
+  },
+  shadowRadius: 10,
+  shadowOpacity: 0.25
+},
 
-},
 textInput: {
-  borderBottomWidth: 1
+height: 60,
 },
+
 input: {
   flex: 1,
-  textAlign: 'center',
-  height: 30,
-  margin: 10,
+  textAlign: 'left',
+  margin: 20,
+  paddingLeft: '10%',
+},
 
-},
-submit: {
+buttonContainer:{
   flex: 1,
-  paddingTop: 40,
-  paddingBottom: 30,
   alignItems: 'center',
-  backgroundColor: '#549E95'
+  marginBottom: 20
 },
-submitText: {
-  fontSize: 25
-}
+
+button:{
+  width: '80%',
+  backgroundColor: '#2E9298',
+  borderRadius: 10,
+  padding: 10,
+  shadowColor: '#141414',
+  shadowOffset: {
+    width: 0,
+    height: 3
+  },
+  shadowRadius: 10,
+  shadowOpacity: 0.25
+},
+
+buttonText:{
+  color: 'white',
+  paddingVertical: 10,
+  textAlign: 'center',
+  fontSize: 20
+},
 
 });
 

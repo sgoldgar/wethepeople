@@ -57,6 +57,7 @@ class App extends Component {
   }
 
 
+
   getAddressFromLatLong() {
     fetch(`http://api.geonames.org/findNearestAddressJSON?lat=37.785834&lng=-122.406417&username=wethepeople`)
     .then(function(response) {
@@ -79,6 +80,7 @@ class App extends Component {
   }
 
   changeAddress(street, city, state, zipCode) {
+
     this.setState({
       address: {
         street: street,
@@ -90,8 +92,10 @@ class App extends Component {
     });
   }
 
-  _onMomentumScrollEnd (e, state, context) {
-    console.log(state, context.state)
+  changePage(page) {
+    this.setState({
+      selectedTab: page
+    });
   }
 
 
@@ -121,7 +125,7 @@ class App extends Component {
                 });
               }}>
               <View style={ styles.appContainer }>
-                <Home address={ address } />
+                <Home address={ address } changePage={ this.changePage.bind(this) }/>
               </View>
             </Icon.TabBarItem>
 
@@ -138,7 +142,7 @@ class App extends Component {
 
               <View style={ styles.appContainer }>
                 <Header />
-                <RepPage address={ address } />
+                <RepPage address={ this.state.address } />
               </View>
 
             </Icon.TabBarItem>
@@ -186,7 +190,8 @@ class App extends Component {
 
 const styles = StyleSheet.create({
   app: {
-    flex: 1
+    flex: 1,
+
   },
   appContainer: {
     flex: 1,

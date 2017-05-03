@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import Icon from 'react-native-vector-icons/MaterialIcons';
-import Communications from 'react-native-communications';
+import Rep from './Rep';
+// import Icon from 'react-native-vector-icons/MaterialIcons';
+// import Communications from 'react-native-communications';
 
 
 import {
@@ -14,92 +15,51 @@ import {
   View
 } from 'react-native';
 
-const googleApiKey = 'AIzaSyB6NrpRei3RgGwXreJOfnM3f9hSeX1wtns';
-const googleApiUrl = 'https://www.googleapis.com/civicinfo/v2/representatives?key=AIzaSyB6NrpRei3RgGwXreJOfnM3f9hSeX1wtns';
-const address = '&address=1200%20Bentwood%20Rd.%20Austin%20TX';
-const roles = '&roles=legislatorUpperBody';
-
 
 class RepList extends Component {
+  //grabbing address from RepPage
+
   // Initialize the hardcoded data
   constructor(props) {
     super(props);
     //this is required for listview
-    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-    //set state to be the list of reps from the parent container, repsData will need to be an array of objects
+    this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
-      reps: []
-    }
+      dataSource: this.ds.cloneWithRows([])
+    };
   }
 
+  componentWillReceiveProps(newProps){
 
-  componentDidMount(){
-    fetch('https://www.googleapis.com/civicinfo/v2/representatives?key=AIzaSyB6NrpRei3RgGwXreJOfnM3f9hSeX1wtns&address=1200%20Bentwood%20Rd.%20Austin%20TX&roles=legislatorUpperBody')
-      .then((response) => {
-        return response.json()
-        console.log(response.json());
-      })
-      .then((response) => {
-        console.log('response: ',response);
-        console.log('response.officials: ',response.officials);
-
-        this.setState({
-          reps: response.officials
-         });
-
-         console.log('this.state.reps: ', this.state.reps)
-      })
+    this.setState({
+      dataSource: this.ds.cloneWithRows(newProps.reps)
+    })
   }
-
 
   render() {
-    if(!this.state.reps.length){
+
+
+    if(!this.props.reps.length){
       return(<Text>Loading..</Text>)
     }
 
-    const repsList = this.state.reps.map((rep) => {
-      console.log('rep is: ', rep)
-      return (
-        <View>
-        <Image style={styles.lineItem} source={{uri: rep.photoUrl}}/>
-        <Text style={styles.lineItem}>{rep.name}</Text>
-        <Text style={styles.lineItem}>{rep.party}</Text>
-        <Text style={styles.lineItem}>{rep.phones[0]}</Text>
-        </View>
-      );
-    });
-
     return (
-      <View>
-        {repsList}
-      </View>
+       <ListView
+         enableEmptySections={true}
+         dataSource={this.state.dataSource}
+         renderRow={data => {
+
+
+          return <Text>{ data.info.name }</Text>
+          //return <Rep reps={ data } />
+
+
+         }}
+       />
+
     )
+  } //end render
 
-  }
+} //end component
 
-}
-
-
-
-// <TouchableOpacity onPress={() => Communications.phonecall('0123456789', true)}>
-//   <View style={styles.holder}>
-//     <Text style={styles.text}>Make phonecall</Text>
-//   </View>
-// </TouchableOpacity>
-// <TouchableOpacity onPress={() => Communications.email(rep.emails, null ,null,null,'My Subject','My body text')}>
-//   <View style={styles.holder}>
-//     <Icon.Button name="mail" backgroundColor="#141414" accessibilityLabel="Email your rep">
-//     </Icon.Button>
-//   </View>
-// </TouchableOpacity>
-
-
-const styles = StyleSheet.create({
-  holder: {
-    flex: 0.25,
-    justifyContent: 'center',
-  },
-});
-
-// App registration and rendering
 export default RepList;
