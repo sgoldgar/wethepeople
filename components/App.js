@@ -49,7 +49,10 @@ class App extends Component {
           latitude: latitude,
           longitude: longitude
         });
+        console.log('latitude: ', latitude)
+        console.log('longitude: ', longitude)
         this.getAddressFromLatLong();
+
       },
       (error) => alert(JSON.stringify(error)),
       {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
@@ -59,7 +62,7 @@ class App extends Component {
 
 
   getAddressFromLatLong() {
-    fetch(`http://api.geonames.org/findNearestAddressJSON?lat=37.785834&lng=-122.406417&username=wethepeople`)
+    fetch(`http://api.geonames.org/findNearestAddressJSON?lat=${ this.state.latitude }&lng=${ this.state.longitude }&username=wethepeople`)
     .then(function(response) {
       return response.json()
     })

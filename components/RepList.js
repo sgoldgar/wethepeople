@@ -50,8 +50,8 @@ class RepList extends Component {
          renderRow={data => {
 
 
-          return <Text>{ data.info.name }</Text>
-          //return <Rep reps={ data } />
+          //return <Text>{ data.info.name }</Text>
+          return <Rep reps={ data } />
 
 
          }}
