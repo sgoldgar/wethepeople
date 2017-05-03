@@ -49,7 +49,7 @@ class RepList extends Component {
          dataSource={this.state.dataSource}
          renderRow={data => {
 
-          return <Text>{ data.name }</Text>
+          return <Text>{ data.info.name }</Text>
           //return <Rep reps={ data } />
          }}
        />

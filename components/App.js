@@ -102,7 +102,6 @@ class App extends Component {
   render() {
 
     const address = this.state.address
-    console.log('what app is seeing: ', this.state.address)
 
     return(
         <View style={styles.app}>
