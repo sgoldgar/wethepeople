@@ -128,20 +128,28 @@ changeLocal: {
 },
 
 question: {
-  flex: 1,
   textAlign: 'center',
   fontSize: 25,
   marginHorizontal: 10,
-  marginTop: 40
+  marginTop: 40,
+  marginBottom: 20
 },
 
 inputBlock: {
   flex: 2,
   flexDirection: 'column',
+  marginLeft: 40,
+  alignContent: 'center',
   justifyContent: 'center',
-  borderTopWidth: StyleSheet.hairlineWidth,
-  borderBottomWidth: StyleSheet.hairlineWidth,
-  marginBottom: 50
+  width: 300,
+  marginBottom: 50,
+  shadowColor: '#141414',
+  shadowOffset: {
+    width: 0,
+    height: 3
+  },
+  shadowRadius: 10,
+  shadowOpacity: 0.25
 },
 
 textInput: {
