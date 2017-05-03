@@ -10,7 +10,7 @@ class Map extends Component {
   render() {
     return(
       <View>
-        
+
       </View>
     )
   }

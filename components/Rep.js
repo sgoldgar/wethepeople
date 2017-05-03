@@ -10,54 +10,140 @@ import {
   TouchableOpacity,
   View
 } from 'react-native';
+
+import MoreInfo from './MoreInfo';
+
 import Communications from 'react-native-communications';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import moreInfo from './moreInfo'
 
 class Rep extends Component {
   constructor(props){
     super(props);
+
+    this.state = {
+      showInfo: false
+    }
   }
 
+  clickForInfo() {
+    this.setState({
+      showInfo: !this.state.showInfo
+    });
+  }
+
+  renderInfo() {
+    if(this.state.showInfo) {
+      return(
+        <MoreInfo reps={ this.props.reps } />
+
+      )
+    }
+  }
+
+  renderPhone() {
+    if (this.props.reps.info.phones) {
+      return(
+        <TouchableOpacity onPress={ () => this.callPhone() }>
+
+          <Icon style={styles.icon} name="phone" color="#549E95" />
+
+        </TouchableOpacity>
+      )
+    }
+  }
+
+  callPhone() {
+    console.log(this.props.reps.info.phones)
+    if(this.props.reps.info.phones) {
+      Communications.phonecall( this.props.reps.info.phones[0], true)
+    }
+  }
+
+  renderEmail() {
+    if (this.props.reps.info.emails) {
+      return(
+        <TouchableOpacity onPress={() => this.emailEmail() }>
+
+          <Icon style={styles.icon} name="envelope" color="#549E95" />
+
+        </TouchableOpacity>
+      )
+    }
+  }
+
+  emailEmail() {
+    console.log(this.props.reps.info.emails)
+    if(this.props.reps.info.emails) { Communications.email(this.props.reps.info.emails,null,null,null,null)}
+  }
+
+
+
   render(){
+
     return(
-    <View style={styles.rowContainer}>
-      <Text style={styles.holder}>{this.props.reps.name}</Text>
-      <Text style={styles.holder}>{this.props.reps.party}</Text>
-        <TouchableOpacity onPress={() => Communications.phonecall('{this.props.reps.phones}', true)}>
-          <View style={styles.holder}>
-            <Icon style={styles.icon} name="phone" color="#549E95" />
+
+      <View style={ styles.repContainer }>
+        <View style={ styles.rowContainer }>
+          <View style={ styles.rowTitle }>
+            <Text style={ styles.titleText }>{ this.props.reps.title }</Text>
+
           </View>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => Communications.email('{this.props.reps.urls}',null,null,'My Subject','My body text')}>
-          <View style={styles.holder}>
-            <Icon style={styles.icon} name="envelope" color="#549E95" />
+          <View style={styles.rowInfo}>
+            <TouchableOpacity onPress={ () => this.clickForInfo() }>
+              <Text style={styles.name}>{this.props.reps.info.name} <Text style={styles.party}>{this.props.reps.info.party}</Text></Text>
+            </TouchableOpacity>
+
+            <View style={ styles.icons }>
+              { (() => this.renderEmail())() }
+
+              { (() => this.renderPhone())() }
+
+            </View>
           </View>
-        </TouchableOpacity>
-          </View>
+        </View>
+        { (() => this.renderInfo())() }
+      </View>
     );
   }
 }
 
 
 const styles = StyleSheet.create ({
-  rowContainer:{
+  repContainer: {
     flex: 1,
+    flexDirection: 'column'
+  },
+  rowContainer: {
+    flex: 1,
+    paddingVertical: 5
+  },
+  rowTitle: {
+    flex: 1,
+    paddingLeft: 2
+  },
+  titleText: {
+    fontSize: 10
+  },
+  rowInfo:{
+    flex: 10,
     flexDirection: 'row',
-    justifyContent: 'center'
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingLeft: 10
   },
-  image:{
-    backgroundColor: 'black',
-    height: 20,
-    width: 20,
-    borderRadius: 50
+  name: {
+    color: '#141414',
+    fontSize: 20
   },
-holder: {
-  color: '#141414',
-  marginHorizontal: 5
+  party:{
+    fontSize: 10,
+  },
+  icons: {
+    flexDirection: 'row'
   },
   icon: {
-    fontSize: 30
+    fontSize: 35,
+    paddingHorizontal: 20
   },
 });
 

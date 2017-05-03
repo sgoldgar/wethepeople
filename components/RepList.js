@@ -17,12 +17,9 @@ import {
 
 
 class RepList extends Component {
-  //grabbing address from RepPage
-
-  // Initialize the hardcoded data
   constructor(props) {
     super(props);
-    //this is required for listview
+
     this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
       dataSource: this.ds.cloneWithRows([])
@@ -36,6 +33,8 @@ class RepList extends Component {
     })
   }
 
+
+
   render() {
 
 
@@ -45,21 +44,33 @@ class RepList extends Component {
 
     return (
        <ListView
+         style={ styles.listContainer}
          enableEmptySections={true}
          dataSource={this.state.dataSource}
+         renderSeparator={ (sectionId, rowId) => <View key={ rowId } style={ styles.separator } /> }
          renderRow={data => {
 
-
-          return <Text>{ data.info.name }</Text>
-          //return <Rep reps={ data } />
-
-
-         }}
-       />
-
+          return(
+            <Rep
+              reps={ data }
+            />
+          )
+          }
+        }
+      />
     )
-  } //end render
+  }
+}
 
-} //end component
+const styles = StyleSheet.create ({
+  listContainer: {
+
+  },
+  separator: {
+    flex: 1,
+    height: StyleSheet.hairlineWidth,
+    backgroundColor: 'black'
+  },
+});
 
 export default RepList;
