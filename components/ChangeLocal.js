@@ -132,12 +132,12 @@ question: {
   textAlign: 'center',
   fontSize: 25,
   marginHorizontal: 10,
-  marginTop: 40,
+  marginTop: 10,
   marginBottom: 20
 },
 
 inputBlock: {
-  flex: 2,
+  flex: 1.5,
   flexDirection: 'column',
   marginLeft: 40,
   alignContent: 'center',
