@@ -7,7 +7,8 @@ import {
   Text,
   TabBarIOS,
   TextInput,
-  TouchableHighlight
+  TouchableHighlight,
+  ScrollView
 } from 'react-native';
 
 
