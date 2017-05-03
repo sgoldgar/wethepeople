@@ -49,8 +49,6 @@ class App extends Component {
           latitude: latitude,
           longitude: longitude
         });
-        console.log('latitude: ', latitude)
-        console.log('longitude: ', longitude)
         this.getAddressFromLatLong();
 
       },
@@ -72,7 +70,7 @@ class App extends Component {
           street: data.address.streetNumber+' '+data.address.street,
           state: data.address.adminCode1,
           zipCode: data.address.postalcode,
-          city: data.address.placename
+          city: data.address.adminName2
         }
       });
 
