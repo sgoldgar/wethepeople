@@ -163,7 +163,7 @@ const styles = StyleSheet.create ({
   },
   icon: {
     fontSize: 35,
-    paddingHorizontal: 20
+    paddingHorizontal: 20,
   },
   arrow: {
     fontSize: 15,
