@@ -26,7 +26,7 @@ class Home extends Component {
 
 const styles = StyleSheet.create({
   header: {
-    backgroundColor: '#D1C4E9',
+    backgroundColor: '#352245',
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',

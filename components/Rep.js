@@ -138,7 +138,8 @@ const styles = StyleSheet.create ({
   },
   titleText: {
     fontSize: 12,
-    color: '#141414'
+    color: '#141414',
+    marginLeft: 5
   },
   rowInfo:{
     flex: 10,
