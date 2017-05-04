@@ -144,7 +144,7 @@ const styles = StyleSheet.create({
 
   },
   indicator: {
-    backgroundColor: '#141414'
+    backgroundColor: '#352245'
   },
   label: {
     color: '#141414',

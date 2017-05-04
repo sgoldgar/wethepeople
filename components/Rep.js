@@ -140,7 +140,8 @@ const styles = StyleSheet.create ({
   titleText: {
     fontSize: 12,
     color: '#141414',
-    marginLeft: 5
+    marginLeft: 5,
+    marginTop: 4,
   },
   rowInfo:{
     flex: 10,

@@ -108,17 +108,17 @@ class App extends Component {
         <View style={styles.app}>
 
           <TabBarIOS
-            barTintColor="#352245"
-            tintColor="#AE9AD5"
-            unselectedItemTintColor="white"
-            unselectedTintColor="white"
+            barTintColor="white"
+            tintColor="#352245"
+            unselectedItemTintColor="#352245"
+            unselectedTintColor="#352245"
             >
 
             <Icon.TabBarItem
               style={ styles.bottomBar }
               title="Home"
-              iconName="md-home"
-              selectedIconName="md-home"
+              iconName="ios-home-outline"
+              selectedIconName="ios-home"
               selected={this.state.selectedTab === 'home'}
               onPress={() => {
                 this.setState({
@@ -132,7 +132,7 @@ class App extends Component {
 
             <Icon.TabBarItem
               title="Representatives"
-              iconName="ios-man"
+              iconName="ios-man-outline"
               selectedIconName="ios-man"
               selected={this.state.selectedTab === 'repPage'}
               onPress={() => {
@@ -150,7 +150,7 @@ class App extends Component {
 
             <Icon.TabBarItem
               title="Change Location"
-              iconName="ios-pin"
+              iconName="ios-pin-outline"
               selectedIconName="ios-pin"
               selected={this.state.selectedTab === 'changeLocal'}
               onPress={() => {
