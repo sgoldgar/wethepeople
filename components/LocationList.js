@@ -24,17 +24,17 @@ class LocationList extends Component {
     this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
     this.state = {
-      pollingLocations: [],
+      pollingPlaces: [],
       dataSource: this.ds.cloneWithRows([])
     }
   }
 
   componentWillReceiveProps() {
-    this.getPollingLocations();
+    this.getPollingPlaces();
   }
 
 
-  getPollingLocations() {
+  getPollingPlaces() {
     let address = this.props.address.street.replace(/\s/g, "%20");
     let city = this.props.address.city.replace(/\s/g, "%20");
     let state = this.props.address.state;
@@ -43,50 +43,57 @@ class LocationList extends Component {
       .then(response => response.json())
       .then((response) => {
           this.setState({
-            pollingLocations : response,
-            dataSource: this.ds.cloneWithRows(newProps.response)
+            pollingPlaces : response,
+            dataSource: this.ds.cloneWithRows(newProps.response.pollingLocations)
           })
+          console.log(pollingPlaces)
+      })
+      .catch((err) => {
+        console.log('err: ', err);
+        this.setState({
+          pollingPlaces : []
+        })
       })
   }
 
   render() {
 
-      if(this.pollingLocations == []){
-        return(<Text>There are no elections in your area right now!</Text>)
-      }
-
-      return (
-        <View style={styles.voteBox}>
-          <View style={styles.textBox}>
-            <Text style={styles.defaultText}>There are no elections in your area right now!</Text>
+      if(this.pollingPlaces){
+        return (
+          <View style={styles.voteBox}>
+            <ListView
+              enableEmptySections={true}
+              dataSource={this.state.dataSource}
+              renderRow={data => {
+               return <Location locations={ data } />
+               }}
+             />
+           </View>
+        )
+      } else {
+        return(
+          <View style={styles.voteBox}>
+            <View>
+              <Text style={styles.defaultText}>There are no elections in your area right now!</Text>
+            </View>
           </View>
-           <ListView
-             enableEmptySections={true}
-             dataSource={this.state.dataSource}
-             renderRow={data => {
-              return <Location locations={ data } />
-              }}
-            />
-        </View>
-      )
+        )
+      }
   }
 }
 
 const styles = StyleSheet.create({
   voteBox:{
     display: 'flex',
-    flexDirection: 'column'
+    flexDirection: 'row',
+    alignItems: 'center'
   },
-  textBox: {
-    marginVertical: 60,
-    marginHorizontal: 30
-  },
-
   defaultText:{
     fontSize: 20,
-    justifyContent: 'center',
-    marginRight: 40,
-    paddingRight: 30,
+    flexDirection: 'row',
+    alignContent: 'center',
+    marginHorizontal: 40,
+    marginTop: 30
   }
 });
 
