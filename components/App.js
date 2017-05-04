@@ -109,9 +109,9 @@ class App extends Component {
 
           <TabBarIOS
             barTintColor="#352245"
-            tintColor="white"
-            unselectedItemTintColor="#AE9AD5"
-            unselectedTintColor="#AE9AD5"
+            tintColor="#AE9AD5"
+            unselectedItemTintColor="white"
+            unselectedTintColor="white"
             >
 
             <Icon.TabBarItem
