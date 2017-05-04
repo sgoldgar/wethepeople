@@ -34,9 +34,9 @@ componentDidMount() {
         </View>
         <View style={ styles.homeVal }>
           <View style={styles.homeText}>
-            <Text style= {styles.text} >We see you're located at</Text>
-            <Text style={ styles.locationStreet } style= {styles.text} >{ address.street }</Text>
-            <Text style={ styles.locationCity } style= {styles.text} >{ address.city }, { address.state} { address.zipCode }</Text>
+            <Text style= {styles.text} >We see you're located at:</Text>
+            <Text style={ styles.locationStreet }>{ address.street }</Text>
+            <Text style={ styles.locationCity }>{ address.city }, { address.state} { address.zipCode }</Text>
             <Text style= {styles.text} >Is this where you are registered to vote?</Text>
           </View>
 
@@ -102,20 +102,23 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     marginTop: '30%'
 
-
   },
   homeText:{
     flexDirection: 'column',
     alignItems: 'center',
     marginBottom: 40,
+
   },
   locationStreet:{
     fontSize: 20,
-    marginTop: 10
+    marginTop: 5,
+    color: '#141414',
+    paddingVertical: 5
   },
   locationCity:{
     fontSize: 20,
-    marginBottom: 10
+    marginBottom: 10,
+    color: '#141414'
   },
   valButtons:{
     flexDirection:'row'
@@ -145,7 +148,8 @@ const styles = StyleSheet.create({
     fontSize: 20
   },
   text: {
-    color: '#141414'
+    color: '#141414',
+    fontSize: 16
   }
 
 });

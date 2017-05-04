@@ -21,7 +21,8 @@ class Rep extends Component {
     super(props);
 
     this.state = {
-      showInfo: false
+      showInfo: false,
+      dateNow: Date.now()
     }
   }
 
@@ -100,12 +101,11 @@ class Rep extends Component {
       <View style={ styles.repContainer }>
         <View style={ styles.rowContainer }>
           <View style={ styles.rowTitle }>
-            <Text style= {styles.text} style={ styles.titleText }>{ this.props.reps.title }</Text>
-
+            <Text style={ styles.titleText }>{ this.props.reps.title }, {this.props.reps.info.party}</Text>
           </View>
           <View style={styles.rowInfo}>
             <TouchableOpacity onPress={ () => this.clickForInfo() }>
-              <Text style= {styles.text} style={styles.name}>{this.props.reps.info.name} <Text style={styles.party}>{this.props.reps.info.party}</Text></Text>
+              <Text style={styles.name}>{this.props.reps.info.name}</Text>
             </TouchableOpacity>
 
             <View style={ styles.icons }>
@@ -138,7 +138,8 @@ const styles = StyleSheet.create ({
     paddingLeft: 2
   },
   titleText: {
-    fontSize: 10
+    fontSize: 12,
+    color: '#141414'
   },
   rowInfo:{
     flex: 10,
@@ -149,10 +150,11 @@ const styles = StyleSheet.create ({
   },
   name: {
     color: '#141414',
-    fontSize: 20
+    fontSize: 22
   },
   party:{
-    fontSize: 10,
+    fontSize: 12,
+    color: '#141414'
   },
   icons: {
     flexDirection: 'row'
