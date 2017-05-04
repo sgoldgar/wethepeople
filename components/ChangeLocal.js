@@ -24,9 +24,9 @@ class ChangeLocal extends Component {
     }
   }
 
-  componentDidMount() {
-    this.refs.address.focus()
-  }
+  // componentDidMount() {
+  //   this.refs.address.focus()
+  // }
 
   updateAddress(e) {
 
@@ -35,17 +35,10 @@ class ChangeLocal extends Component {
     const usState = this.state.stateInput;
     const zip = this.state.zipInput;
 
-    console.log('is it updating: ', address, city, usState, zip)
-
     this.props.changeAddress(address, city, usState, zip);
-
   }
 
-
   render() {
-
-    const stateList = ["AK","AL","AR","AZ","CA","CO","CT","DC","DE","FL","GA","GU","HI","IA","ID","IL","IN","KS","KY","LA","MA","MD","ME","MH","MI","MN","MO","MS","MT","NC","ND","NE","NH","NJ","NM","NV","NY","OH","OK","OR","PA","PR","PW","RI","SC","SD","TN","TX","UT","VA","VI","VT","WA","WI","WV","WY"];
-
 
     return(
       <View style={ styles.changeLocal }>
@@ -132,8 +125,8 @@ question: {
   textAlign: 'center',
   fontSize: 25,
   marginHorizontal: 10,
-  marginTop: 10,
-  marginBottom: 20
+  marginTop: 40,
+  marginBottom: 30
 },
 
 inputBlock: {
