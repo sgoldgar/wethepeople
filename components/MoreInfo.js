@@ -155,13 +155,15 @@ moreInfoContainer: {
 image: {
   height: 110,
   width: 110,
-  borderRadius: 55
+  borderRadius: 55,
+  marginLeft: 10
 },
 info: {
   flex: 1,
   flexDirection: 'column',
   paddingLeft: 20,
-  paddingTop: 5
+  paddingTop: 5,
+  marginRight: 5
 },
 socialLinks: {
   flexDirection: 'row',
@@ -176,7 +178,7 @@ facebook: {
 },
 text: {
   color: '#141414',
-  fontSize: 16
+  fontSize: 16,
 }
 });
 

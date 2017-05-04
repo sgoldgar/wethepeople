@@ -125,8 +125,8 @@ question: {
   textAlign: 'center',
   fontSize: 25,
   marginHorizontal: 10,
-  marginTop: 10,
-  marginBottom: 20
+  marginTop: 40,
+  marginBottom: 30
 },
 
 inputBlock: {

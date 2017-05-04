@@ -139,14 +139,16 @@ const styles = StyleSheet.create ({
   titleText: {
     fontSize: 12,
     color: '#141414',
-    marginLeft: 5
+    marginLeft: 7,
+    marginTop: 4,
   },
   rowInfo:{
     flex: 10,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingLeft: 10
+    paddingLeft: 10,
+    marginVertical: 3
   },
   name: {
     color: '#141414',
@@ -161,7 +163,7 @@ const styles = StyleSheet.create ({
   },
   icon: {
     fontSize: 35,
-    paddingHorizontal: 20
+    paddingHorizontal: 20,
   },
   arrow: {
     fontSize: 15,
