@@ -76,6 +76,21 @@ class Rep extends Component {
     if(this.props.reps.info.emails) { Communications.email(this.props.reps.info.emails,null,null,null,null)}
   }
 
+  whichChevron() {
+    if(!this.state.showInfo) {
+      return(
+        <TouchableOpacity onPress={() => this.clickForInfo() }>
+          <Icon style={styles.arrow} name="angle-down" color="#549E95" />
+        </TouchableOpacity>
+      )
+    } else {
+      return(
+        <TouchableOpacity onPress={() => this.clickForInfo() }>
+          <Icon style={styles.arrow} name="angle-up" color="#549E95" />
+        </TouchableOpacity>
+      )
+    }
+  }
 
 
   render(){
@@ -102,6 +117,7 @@ class Rep extends Component {
           </View>
         </View>
         { (() => this.renderInfo())() }
+        { (() => this.whichChevron())() }
       </View>
     );
   }
@@ -115,7 +131,7 @@ const styles = StyleSheet.create ({
   },
   rowContainer: {
     flex: 1,
-    paddingVertical: 5
+    paddingTop: 5
   },
   rowTitle: {
     flex: 1,
@@ -144,6 +160,11 @@ const styles = StyleSheet.create ({
   icon: {
     fontSize: 35,
     paddingHorizontal: 20
+  },
+  arrow: {
+    fontSize: 15,
+    paddingHorizontal: 20,
+    textAlign: 'center'
   },
 });
 

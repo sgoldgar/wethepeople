@@ -181,7 +181,6 @@ class App extends Component {
                 <GoVote address={ address } />
               </View>
             </Icon.TabBarItem>
-
           </TabBarIOS>
         </View>
 

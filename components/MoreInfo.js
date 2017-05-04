@@ -19,16 +19,39 @@ class MoreInfo extends Component {
     if(this.props.reps.info.photoUrl) {
       return(
         <Image
-          source={  {uri: `${this.props.reps.info.photoUrl}` } }
+          source={ {uri: `${this.props.reps.info.photoUrl}` } }
+          style={ styles.image }
+        />
+      )
+    } else {
+      return(
+        <Image
+          source={ require('../assets/images/default_user_image.jpg') }
           style={ styles.image }
         />
       )
     }
   }
 
+  renderUrl() {
+    if(this.props.reps.info.urls) {
+      return(
+        <TouchableOpacity onPress={ this.urlLink() }>
+          <Icon style={ styles.icon } name="globe" color='#141414'/>
+        </TouchableOpacity>
+      )
+    }
+  }
+
+  urlLink() {
+    if(this.props.reps.info.urls) {
+      Communications.web(`${ this.props.reps.info.urls[0] }`)
+    }
+
+  }
+
   renderAddress() {
     if(this.props.reps.info.address[0].line3) {
-      console.log('it works')
       return (
         <View>
           <Text>{ this.props.reps.info.address[0].line1 }</Text>
@@ -38,7 +61,6 @@ class MoreInfo extends Component {
         </View>
       )
     } else if(this.props.reps.info.address[0].line2) {
-      console.log('it works')
         return (
           <View>
             <Text>{ this.props.reps.info.address[0].line1 }</Text>
@@ -83,8 +105,11 @@ class MoreInfo extends Component {
         <View style={ styles.info }>
           { (() => this.renderAddress())() }
           <View style={ styles.socialLinks }>
+            <TouchableOpacity onPress={ () => this.urlLink() }>
+              <Icon style={ styles.icon } name="globe" color='black'/>
+            </TouchableOpacity>
             <TouchableOpacity onPress={ () => this.facebookLink() }>
-              <Icon style={ styles.icon} name="facebook-square" color='#3b5998'/>
+              <Icon style={ styles.icon} name="facebook-official" color='#3b5998'/>
             </TouchableOpacity>
             <TouchableOpacity onPress={ () => this.twitterLink() }>
               <Icon style={ styles.icon} name="twitter" color='#4099ff' />
@@ -111,7 +136,8 @@ image: {
 info: {
   flex: 1,
   flexDirection: 'column',
-  paddingLeft: 20
+  paddingLeft: 20,
+  paddingTop: 5
 },
 socialLinks: {
   flexDirection: 'row',

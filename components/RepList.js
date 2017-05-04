@@ -43,34 +43,40 @@ class RepList extends Component {
     }
 
     return (
-       <ListView
-         style={ styles.listContainer}
-         enableEmptySections={true}
-         dataSource={this.state.dataSource}
-         renderSeparator={ (sectionId, rowId) => <View key={ rowId } style={ styles.separator } /> }
-         renderRow={data => {
+      <View>
+         <ListView
+           style={ styles.listContainer}
+           enableEmptySections={true}
+           dataSource={this.state.dataSource}
+           renderSeparator={ (sectionId, rowId) => <View key={ rowId } style={ styles.separator } /> }
+           renderRow={data => {
 
-          return(
-            <Rep
-              reps={ data }
-            />
-          )
+            return(
+              <Rep
+                reps={ data }
+              />
+            )
+            }
           }
-        }
-      />
+        />
+        <View style={ styles.footer }></View>
+      </View>
     )
   }
 }
 
 const styles = StyleSheet.create ({
   listContainer: {
-
+    flex: 1
   },
   separator: {
     flex: 1,
     height: StyleSheet.hairlineWidth,
     backgroundColor: 'black'
   },
+  footer: {
+    margin: 80
+  }
 });
 
 export default RepList;
