@@ -141,7 +141,8 @@ const styles = StyleSheet.create({
   buttonText:{
     color: 'white',
     paddingVertical: 10,
-    textAlign: 'center'
+    textAlign: 'center',
+    fontSize: 20
   }
 
 });
