@@ -22,7 +22,6 @@ class Rep extends Component {
 
     this.state = {
       showInfo: false,
-      dateNow: Date.now()
     }
   }
 
