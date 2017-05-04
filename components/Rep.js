@@ -92,6 +92,18 @@ class Rep extends Component {
     }
   }
 
+  renderParty() {
+    if(this.props.reps.info.party) {
+      return(
+        this.props.reps.info.party
+      )
+    } else {
+      return(
+        'Unknown'
+      )
+    }
+  }
+
 
   render(){
 
@@ -100,7 +112,7 @@ class Rep extends Component {
       <View style={ styles.repContainer }>
         <View style={ styles.rowContainer }>
           <View style={ styles.rowTitle }>
-            <Text style={ styles.titleText }>{ this.props.reps.title }, {this.props.reps.info.party}</Text>
+            <Text style={ styles.titleText }>{ this.props.reps.title }, { (() => this.renderParty())() }</Text>
           </View>
           <View style={styles.rowInfo}>
             <TouchableOpacity onPress={ () => this.clickForInfo() }>

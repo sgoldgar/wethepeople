@@ -1108,7 +1108,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.jacobbodkin.WeThePeople;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jacobbodkin.wethepeople;
 				PRODUCT_NAME = WeThePeople;
 				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1133,7 +1133,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.jacobbodkin.WeThePeople;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jacobbodkin.wethepeople;
 				PRODUCT_NAME = WeThePeople;
 				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
