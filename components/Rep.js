@@ -100,12 +100,12 @@ class Rep extends Component {
       <View style={ styles.repContainer }>
         <View style={ styles.rowContainer }>
           <View style={ styles.rowTitle }>
-            <Text style={ styles.titleText }>{ this.props.reps.title }</Text>
+            <Text style= {styles.text} style={ styles.titleText }>{ this.props.reps.title }</Text>
 
           </View>
           <View style={styles.rowInfo}>
             <TouchableOpacity onPress={ () => this.clickForInfo() }>
-              <Text style={styles.name}>{this.props.reps.info.name} <Text style={styles.party}>{this.props.reps.info.party}</Text></Text>
+              <Text style= {styles.text} style={styles.name}>{this.props.reps.info.name} <Text style={styles.party}>{this.props.reps.info.party}</Text></Text>
             </TouchableOpacity>
 
             <View style={ styles.icons }>
@@ -166,6 +166,9 @@ const styles = StyleSheet.create ({
     paddingHorizontal: 20,
     textAlign: 'center'
   },
+  text: {
+    color: '#141414'
+  }
 });
 
 export default Rep;

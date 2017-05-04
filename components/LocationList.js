@@ -14,7 +14,7 @@ class LocationList extends Component {
   render() {
     return(
       <View>
-        <Text>List</Text>
+        <Text style= {styles.text} >List</Text>
 
       </View>
 
@@ -23,7 +23,9 @@ class LocationList extends Component {
 }
 
 const styles = StyleSheet.create({
-
+text: {
+  color: '#141414'
+}
 });
 
 export default LocationList;

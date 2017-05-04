@@ -54,25 +54,25 @@ class MoreInfo extends Component {
     if(this.props.reps.info.address[0].line3) {
       return (
         <View>
-          <Text>{ this.props.reps.info.address[0].line1 }</Text>
-          <Text>{ this.props.reps.info.address[0].line2 }</Text>
-          <Text>{ this.props.reps.info.address[0].line3 }</Text>
-          <Text>{ this.props.reps.info.address[0].city }, { this.props.reps.info.address[0].state } { this.props.reps.info.address[0].zip }</Text>
+          <Text style= {styles.text} >{ this.props.reps.info.address[0].line1 }</Text>
+          <Text style= {styles.text} >{ this.props.reps.info.address[0].line2 }</Text>
+          <Text style= {styles.text} >{ this.props.reps.info.address[0].line3 }</Text>
+          <Text style= {styles.text} >{ this.props.reps.info.address[0].city }, { this.props.reps.info.address[0].state } { this.props.reps.info.address[0].zip }</Text>
         </View>
       )
     } else if(this.props.reps.info.address[0].line2) {
         return (
           <View>
-            <Text>{ this.props.reps.info.address[0].line1 }</Text>
-            <Text>{ this.props.reps.info.address[0].line2 }</Text>
-            <Text>{ this.props.reps.info.address[0].city }, { this.props.reps.info.address[0].state } { this.props.reps.info.address[0].zip }</Text>
+            <Text style= {styles.text} >{ this.props.reps.info.address[0].line1 }</Text>
+            <Text style= {styles.text} >{ this.props.reps.info.address[0].line2 }</Text>
+            <Text style= {styles.text} >{ this.props.reps.info.address[0].city }, { this.props.reps.info.address[0].state } { this.props.reps.info.address[0].zip }</Text>
           </View>
         )
     } else {
         return (
           <View>
-            <Text>{ this.props.reps.info.address[0].line1 }</Text>
-            <Text>{ this.props.reps.info.address[0].city }, { this.props.reps.info.address[0].state } { this.props.reps.info.address[0].zip }</Text>
+            <Text style= {styles.text} >{ this.props.reps.info.address[0].line1 }</Text>
+            <Text style= {styles.text} >{ this.props.reps.info.address[0].city }, { this.props.reps.info.address[0].state } { this.props.reps.info.address[0].zip }</Text>
           </View>
         )
     }
@@ -106,7 +106,7 @@ class MoreInfo extends Component {
           { (() => this.renderAddress())() }
           <View style={ styles.socialLinks }>
             <TouchableOpacity onPress={ () => this.urlLink() }>
-              <Icon style={ styles.icon } name="globe" color='black'/>
+              <Icon style={ styles.icon } name="globe" color='#141414'/>
             </TouchableOpacity>
             <TouchableOpacity onPress={ () => this.facebookLink() }>
               <Icon style={ styles.icon} name="facebook-official" color='#3b5998'/>
@@ -149,6 +149,9 @@ paddingRight: 20
 },
 facebook: {
   color: '#3b5998'
+},
+text: {
+  color: '#141414'
 }
 });
 

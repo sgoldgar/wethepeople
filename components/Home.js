@@ -34,16 +34,16 @@ componentDidMount() {
         </View>
         <View style={ styles.homeVal }>
           <View style={styles.homeText}>
-            <Text>We see you're located at</Text>
-            <Text style={ styles.locationStreet }>{ address.street }</Text>
-            <Text style={ styles.locationCity }>{ address.city }, { address.state} { address.zipCode }</Text>
-            <Text>Is this where you are registered to vote?</Text>
+            <Text style= {styles.text} >We see you're located at</Text>
+            <Text style={ styles.locationStreet } style= {styles.text} >{ address.street }</Text>
+            <Text style={ styles.locationCity } style= {styles.text} >{ address.city }, { address.state} { address.zipCode }</Text>
+            <Text style= {styles.text} >Is this where you are registered to vote?</Text>
           </View>
 
           <View style= { styles.valButtons}>
             <View style={styles.buttonContainer}>
               <TouchableHighlight
-                underlayColor="green"
+                underlayColor="#549E95"
                 style={ styles.button }
                 onPress={ () => this.props.changePage('repPage') }
                 >
@@ -52,7 +52,7 @@ componentDidMount() {
             </View>
               <View style={styles.buttonContainer}>
                 <TouchableHighlight
-                  underlayColor="green"
+                  underlayColor="#549E95"
                   style={ styles.button }
                   onPress={ () => this.props.changePage('changeLocal') }
                   >
@@ -143,6 +143,9 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     textAlign: 'center',
     fontSize: 20
+  },
+  text: {
+    color: '#141414'
   }
 
 });

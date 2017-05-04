@@ -20,7 +20,7 @@ class GoVote extends Component {
   render() {
     return(
       <View style={ styles.goVote }>
-        <Text>
+        <Text style={styles.text} >
           Go Vote
         </Text>
 
@@ -34,6 +34,9 @@ class GoVote extends Component {
 const styles = StyleSheet.create({
 goVote: {
   flex: 9
+},
+text: {
+  color: '#141414'
 }
 });
 
