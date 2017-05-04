@@ -129,9 +129,9 @@ moreInfoContainer: {
   marginBottom: 10
 },
 image: {
-  height: 100,
-  width: 100,
-  borderRadius: 50
+  height: 110,
+  width: 110,
+  borderRadius: 55
 },
 info: {
   flex: 1,
@@ -142,16 +142,17 @@ info: {
 socialLinks: {
   flexDirection: 'row',
   marginTop: 10,
+  justifyContent: 'space-around'
 },
 icon: {
 fontSize: 35,
-paddingRight: 20
 },
 facebook: {
   color: '#3b5998'
 },
 text: {
-  color: '#141414'
+  color: '#141414',
+  fontSize: 16
 }
 });
 

@@ -18,12 +18,6 @@ import {
 
 
 class LocationList extends Component {
-
-  render() {
-    return(
-      <View>
-        <Text>List</Text>
-
   constructor(props) {
     super(props)
 
