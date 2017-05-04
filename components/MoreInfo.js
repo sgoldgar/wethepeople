@@ -33,10 +33,40 @@ class MoreInfo extends Component {
     }
   }
 
+  renderAddress() {
+    if(this.props.reps.info.address) {
+      if(this.props.reps.info.address[0].line3) {
+        return (
+          <View>
+            <Text style= {styles.text} >{ this.props.reps.info.address[0].line1 }</Text>
+            <Text style= {styles.text} >{ this.props.reps.info.address[0].line2 }</Text>
+            <Text style= {styles.text} >{ this.props.reps.info.address[0].line3 }</Text>
+            <Text style= {styles.text} >{ this.props.reps.info.address[0].city }, { this.props.reps.info.address[0].state } { this.props.reps.info.address[0].zip }</Text>
+          </View>
+        )
+      } else if(this.props.reps.info.address[0].line2) {
+          return (
+            <View>
+              <Text style= {styles.text} >{ this.props.reps.info.address[0].line1 }</Text>
+              <Text style= {styles.text} >{ this.props.reps.info.address[0].line2 }</Text>
+              <Text style= {styles.text} >{ this.props.reps.info.address[0].city }, { this.props.reps.info.address[0].state } { this.props.reps.info.address[0].zip }</Text>
+            </View>
+          )
+      } else {
+          return (
+            <View>
+              <Text style= {styles.text} >{ this.props.reps.info.address[0].line1 }</Text>
+              <Text style= {styles.text} >{ this.props.reps.info.address[0].city }, { this.props.reps.info.address[0].state } { this.props.reps.info.address[0].zip }</Text>
+            </View>
+          )
+      }
+    }
+  }
+
   renderUrl() {
     if(this.props.reps.info.urls) {
       return(
-        <TouchableOpacity onPress={ this.urlLink() }>
+        <TouchableOpacity onPress={ () => this.urlLink() }>
           <Icon style={ styles.icon } name="globe" color='#141414'/>
         </TouchableOpacity>
       )
@@ -50,31 +80,17 @@ class MoreInfo extends Component {
 
   }
 
-  renderAddress() {
-    if(this.props.reps.info.address[0].line3) {
-      return (
-        <View>
-          <Text style= {styles.text} >{ this.props.reps.info.address[0].line1 }</Text>
-          <Text style= {styles.text} >{ this.props.reps.info.address[0].line2 }</Text>
-          <Text style= {styles.text} >{ this.props.reps.info.address[0].line3 }</Text>
-          <Text style= {styles.text} >{ this.props.reps.info.address[0].city }, { this.props.reps.info.address[0].state } { this.props.reps.info.address[0].zip }</Text>
-        </View>
-      )
-    } else if(this.props.reps.info.address[0].line2) {
-        return (
-          <View>
-            <Text style= {styles.text} >{ this.props.reps.info.address[0].line1 }</Text>
-            <Text style= {styles.text} >{ this.props.reps.info.address[0].line2 }</Text>
-            <Text style= {styles.text} >{ this.props.reps.info.address[0].city }, { this.props.reps.info.address[0].state } { this.props.reps.info.address[0].zip }</Text>
-          </View>
-        )
-    } else {
-        return (
-          <View>
-            <Text style= {styles.text} >{ this.props.reps.info.address[0].line1 }</Text>
-            <Text style= {styles.text} >{ this.props.reps.info.address[0].city }, { this.props.reps.info.address[0].state } { this.props.reps.info.address[0].zip }</Text>
-          </View>
-        )
+  renderFacebook() {
+    if(this.props.reps.info.channels) {
+      for(i=0, x=this.props.reps.info.channels.length; i<x; i++) {
+        if(this.props.reps.info.channels[i].type === 'Facebook') {
+          return(
+            <TouchableOpacity onPress={ () => this.facebookLink() }>
+              <Icon style={ styles.icon } name="facebook-official" color='#3b5998'/>
+            </TouchableOpacity>
+          )
+        }
+      }
     }
   }
 
@@ -83,6 +99,20 @@ class MoreInfo extends Component {
       for(i=0, x=this.props.reps.info.channels.length; i<x; i++) {
         if(this.props.reps.info.channels[i].type === 'Facebook') {
           Communications.web(`https://www.facebook.com/${this.props.reps.info.channels[i].id}`)
+        }
+      }
+    }
+  }
+
+  renderTwitter() {
+    if(this.props.reps.info.channels) {
+      for(i=0, x=this.props.reps.info.channels.length; i<x; i++) {
+        if(this.props.reps.info.channels[i].type === 'Facebook') {
+          return(
+            <TouchableOpacity onPress={ () => this.twitterLink() }>
+              <Icon style={ styles.icon} name="twitter" color='#4099ff' />
+            </TouchableOpacity>
+          )
         }
       }
     }
@@ -105,15 +135,9 @@ class MoreInfo extends Component {
         <View style={ styles.info }>
           { (() => this.renderAddress())() }
           <View style={ styles.socialLinks }>
-            <TouchableOpacity onPress={ () => this.urlLink() }>
-              <Icon style={ styles.icon } name="globe" color='#141414'/>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={ () => this.facebookLink() }>
-              <Icon style={ styles.icon} name="facebook-official" color='#3b5998'/>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={ () => this.twitterLink() }>
-              <Icon style={ styles.icon} name="twitter" color='#4099ff' />
-            </TouchableOpacity>
+            { (() => this.renderUrl())() }
+            { (() => this.renderFacebook())() }
+            { (() => this.renderTwitter())() }
           </View>
         </View>
       </View>
@@ -125,7 +149,7 @@ const styles = StyleSheet.create ({
 moreInfoContainer: {
   flex: 1,
   flexDirection: 'row',
-  marginLeft: 10,
+  marginVertical: 10,
   marginBottom: 10
 },
 image: {
