@@ -18,6 +18,12 @@ import {
 
 
 class LocationList extends Component {
+
+  render() {
+    return(
+      <View>
+        <Text>List</Text>
+
   constructor(props) {
     super(props)
 
@@ -56,6 +62,7 @@ class LocationList extends Component {
       })
   }
 
+
   render() {
 
       if(this.pollingPlaces){
@@ -83,6 +90,7 @@ class LocationList extends Component {
 }
 
 const styles = StyleSheet.create({
+
   voteBox:{
     display: 'flex',
     flexDirection: 'row',
@@ -95,6 +103,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 40,
     marginTop: 30
   }
+
 });
 
 export default LocationList;

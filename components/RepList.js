@@ -39,7 +39,7 @@ class RepList extends Component {
 
 
     if(!this.props.reps.length){
-      return(<Text>Loading..</Text>)
+      return(<Text style= {styles.text} >Loading..</Text>)
     }
 
     return (
@@ -72,11 +72,15 @@ const styles = StyleSheet.create ({
   separator: {
     flex: 1,
     height: StyleSheet.hairlineWidth,
-    backgroundColor: 'black'
+    backgroundColor: '#141414'
   },
   footer: {
     margin: 80
+  },
+  text: {
+    color: '#141414'
   }
+
 });
 
 export default RepList;

@@ -144,10 +144,10 @@ const styles = StyleSheet.create({
 
   },
   indicator: {
-    backgroundColor: 'black'
+    backgroundColor: '#141414'
   },
   label: {
-    color: 'black',
+    color: '#141414',
 
   }
 });
