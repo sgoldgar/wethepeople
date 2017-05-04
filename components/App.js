@@ -166,7 +166,7 @@ class App extends Component {
 
             </Icon.TabBarItem>
 
-            <Icon.TabBarItem
+            {/* <Icon.TabBarItem
               title="Go Vote"
               iconName="md-checkmark-circle-outline"
               selectedIconName="md-checkmark-circle-outline"
@@ -180,7 +180,7 @@ class App extends Component {
                 <Header />
                 <GoVote address={ address } />
               </View>
-            </Icon.TabBarItem>
+            </Icon.TabBarItem> */}
           </TabBarIOS>
         </View>
 
