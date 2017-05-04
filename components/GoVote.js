@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import LocationList from './LocationList';
 import Map from './Map';
+import Location from './Location';
+import LocationList from './LocationList';
 
 import {
   AppRegistry,
@@ -24,6 +26,7 @@ class GoVote extends Component {
         </Text>
           <Map />
           <LocationList address={this.props.address}/>
+
       </View>
 
     )

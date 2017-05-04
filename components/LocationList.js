@@ -4,6 +4,7 @@
 import React, { Component } from 'react';
 import Location from './Location';
 
+
 import {
   AppRegistry,
   StyleSheet,
