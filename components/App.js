@@ -50,7 +50,6 @@ class App extends Component {
           longitude: longitude
         });
         this.getAddressFromLatLong();
-
       },
       (error) => alert(JSON.stringify(error)),
       {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
@@ -70,14 +69,21 @@ class App extends Component {
           street: data.address.streetNumber+' '+data.address.street,
           state: data.address.adminCode1,
           zipCode: data.address.postalcode,
-          city: data.address.adminName2
+          city: this.getCity(data)
         }
       });
-
     })
     .catch((error) => {
       console.error(error);
     });
+  }
+
+  getCity(data) {
+    if(data.address.placename.length>1) {
+      return data.address.placename
+    } else {
+      data.address.adminName2
+    }
   }
 
   changeAddress(street, city, state, zipCode) {
