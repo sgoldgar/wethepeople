@@ -27,9 +27,22 @@ class RepPage extends Component {
       { key: '2', title: 'State' },
       { key: '3', title: 'Local'}
       ],
+      reload: false
     }
   }
 
+  componentWillReceiveProps(nextProps){
+    this.reloadNeeded(nextProps.fedReps)
+    this.reloadNeeded(nextProps.stateReps)
+    this.reloadNeeded(nextProps.localReps)
+  }
+
+  reloadNeeded(reps) {
+    let reload = (this.props.reps !== reps)
+    if (reload) {
+      this.setState({ reload: reload })
+    }
+  }
 
   _handleChangeTab = (index) => {
     this.setState({ index });
@@ -48,11 +61,14 @@ class RepPage extends Component {
   _renderScene = ({ route }) => {
     switch (route.key) {
     case '1':
-      return <FederalReps address={ this.props.address } />;
+      return (<FederalReps
+          fedReps={ this.props.fedReps }
+        />
+      );
     case '2':
-      return <StateReps address={ this.props.address } />;
+      return <StateReps stateReps={ this.props.stateReps } />;
     case '3':
-      return <LocalReps address={ this.props.address } />;
+      return <LocalReps localReps={ this.props.localReps } />;
     default:
       return null;
     }
@@ -60,14 +76,13 @@ class RepPage extends Component {
 
 
   render() {
-
     return(
       <TabViewAnimated
         style={ styles.repPage }
-        navigationState={this.state}
-        renderScene={this._renderScene }
-        renderHeader={this._renderHeader}
-        onRequestChangeTab={this._handleChangeTab}
+        navigationState={ this.state }
+        renderScene={ this._renderScene }
+        renderHeader={ this._renderHeader }
+        onRequestChangeTab={ this._handleChangeTab }
       />
     )
   }

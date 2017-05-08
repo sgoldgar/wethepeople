@@ -37,7 +37,6 @@ class RepList extends Component {
 
   render() {
 
-
     if(!this.props.reps.length){
       return(<Text style= {styles.text} >Loading..</Text>)
     }

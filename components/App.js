@@ -34,11 +34,15 @@ class App extends Component {
         city: '',
         state: '',
         zipCode: ''
-      }
+      },
+      fedReps: [],
+      stateReps: [],
+      localReps: []
     }
 
   }
 
+//getting lat and long from phone
   componentDidMount() {
     navigator.geolocation.getCurrentPosition(
       (position) => {
@@ -57,7 +61,7 @@ class App extends Component {
   }
 
 
-
+//changing lat and long to address
   getAddressFromLatLong() {
     fetch(`http://api.geonames.org/findNearestAddressJSON?lat=${ this.state.latitude }&lng=${ this.state.longitude }&username=wethepeople`)
     .then(function(response) {
@@ -72,6 +76,7 @@ class App extends Component {
           city: this.getCity(data)
         }
       });
+      this.getReps();
     })
     .catch((error) => {
       console.error(error);
@@ -86,17 +91,20 @@ class App extends Component {
     }
   }
 
+//changing address
   changeAddress(street, city, state, zipCode) {
-
     this.setState({
       address: {
         street: street,
+        city: city,
         state: state,
         zipCode: zipCode,
-        city: city
       },
-      selectedTab: 'repPage'
-    });
+      selectedTab: 'repPage',
+      fedReps: [],
+      stateReps: [],
+      localReps: []
+    }, this.getReps.bind(this));
   }
 
   changePage(page) {
@@ -104,6 +112,88 @@ class App extends Component {
       selectedTab: page
     });
   }
+
+
+//getting reps
+  getReps() {
+
+    let address = this.state.address.street.replace(/\s/g, "%20");
+    let city = this.state.address.city.replace(/\s/g, "%20");
+    let state = this.state.address.state;
+    let zipCode = this.state.address.zipCode;
+
+    fetch(`https://www.googleapis.com/civicinfo/v2/representatives?key=AIzaSyB6NrpRei3RgGwXreJOfnM3f9hSeX1wtns&address=${ address }+${ city }+${ state }+${ zipCode }`)
+      .then(response => response.json())
+      .then((response) => {
+        this.seperateReps(response)
+      })
+  }
+
+
+  seperateReps(response) {
+    let localIndex=[]
+    let stateIndex=[]
+    let federalIndex=[]
+    for (let i=0, x=response.offices.length; i<x; i++) {
+      if(response.offices[i].divisionId.indexOf("place")>-1 || response.offices[i].divisionId.indexOf("county")>-1) {
+        localIndex.push.apply(localIndex, [{
+          title: response.offices[i].name,
+          index: response.offices[i].officialIndices
+        }])
+      } else if(response.offices[i].name.indexOf("United")>-1) {
+        federalIndex.push.apply(federalIndex, [{
+          title: response.offices[i].name,
+          index: response.offices[i].officialIndices
+        }])
+      } else {
+        stateIndex.push.apply(stateIndex, [{
+          title: response.offices[i].name,
+          index: response.offices[i].officialIndices
+        }])
+      }
+    }
+
+    let fedReps = []
+    for(let i=0, x=federalIndex.length; i<x; i++) {
+      for(let j=0, y=federalIndex[i].index.length; j<y; j++) {
+        fedReps.push.apply(fedReps, [{
+          title: federalIndex[i].title,
+          info: response.officials[federalIndex[i].index[j]]
+        }])
+      }
+    }
+
+    let stateReps = []
+    for(let i=0, x=stateIndex.length; i<x; i++) {
+      for(let j=0, y=stateIndex[i].index.length; j<y; j++) {
+        stateReps.push.apply(stateReps, [{
+          title: stateIndex[i].title,
+          info: response.officials[stateIndex[i].index[j]]
+        }])
+      }
+    }
+
+    let localReps = []
+    for(let i=0, x=localIndex.length; i<x; i++) {
+      for(let j=0, y=localIndex[i].index.length; j<y; j++) {
+        localReps.push.apply(localReps, [{
+          title: localIndex[i].title,
+          info: response.officials[localIndex[i].index[j]]
+        }])
+      }
+    }
+
+    this.setState({
+      fedReps: fedReps,
+      stateReps: stateReps,
+      localReps: localReps
+    });
+  }
+
+
+
+
+
 
 
   render() {
@@ -149,7 +239,11 @@ class App extends Component {
 
               <View style={ styles.appContainer }>
                 <Header />
-                <RepPage address={ this.state.address } />
+                <RepPage
+                  fedReps={ this.state.fedReps }
+                  stateReps={ this.state.stateReps }
+                  localReps={ this.state.localReps }
+                />
               </View>
 
             </Icon.TabBarItem>
