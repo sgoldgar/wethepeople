@@ -24,21 +24,22 @@ class ChangeLocal extends Component {
     }
   }
 
-  // componentDidMount() {
-  //   this.refs.address.focus()
-  // }
+  onPressAddress(address, city, usState, zip) {
+    this.props.changeAddress(address, city, usState, zip)
+    this.setState({
+      addressInput: '',
+      cityInput: '',
+      stateInput: '',
+      zipInput: ''
+    })
+  }
 
-  updateAddress(e) {
+  render() {
 
     const address = this.state.addressInput;
     const city = this.state.cityInput;
     const usState = this.state.stateInput;
     const zip = this.state.zipInput;
-
-    this.props.changeAddress(address, city, usState, zip);
-  }
-
-  render() {
 
     return(
       <View style={ styles.changeLocal }>
@@ -103,7 +104,7 @@ class ChangeLocal extends Component {
         <View style={styles.buttonContainer}>
           <TouchableHighlight
             style={ styles.button }
-            onPress={ this.updateAddress.bind(this) }
+            onPress={ () => this.onPressAddress(address, city, usState, zip) }
             >
             <Text style={ styles.buttonText }>See your Representatives!</Text>
           </TouchableHighlight>
