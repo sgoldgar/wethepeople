@@ -2,9 +2,9 @@
 
 An app made for a group React/React Native project. I worked mostly on styling, on the API calls to the Google Civic API and structuring the Rep List page and Maps page (which ended up not being included in final product).
 
-![home screen](http://imgur.com/PGJpdwA "Home Screen")
-![reps page](http://imgur.com/9Oj2ljx "Reps Page")
-![change location](http://imgur.com/IUCmUCk "Change Location")
+![home screen](http://i.imgur.com/PGJpdwA.png "Home Screen")
+![reps page](http://i.imgur.com/9Oj2ljx.png "Reps Page")
+![change location](http://i.imgur.com/IUCmUCk.png "Change Location")
 
 --
 
