@@ -1,5 +1,9 @@
 # wethepeople
 
+An app made for a group React/React Native project. I worked mostly on styling, on the API calls to the Google Civic API and structuring the Rep List page and Maps page (which ended up not being included in final product).
+
+--
+
 This app is used to help simplify the process of finding elected officials for the public.
 It uses google maps geolocation to find local representatives for county and city but 
 also lists state and federal represenatives.
