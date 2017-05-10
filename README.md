@@ -2,10 +2,9 @@
 
 An app made for a group React/React Native project. I worked mostly on styling, on the API calls to the Google Civic API and structuring the Rep List page and Maps page (which ended up not being included in final product).
 
-![home screen](https://github.com/sarahgoldgar/wethepeople/blob/master/images/homescreen.png "Home Screen")
-![reps page](https://github.com/sarahgoldgar/wethepeople/blob/master/images/repspage.png "Reps Page")
-![change location](https://github.com/sarahgoldgar/wethepeople/blob/master/images/changelocation.png "Change Location")
-
+![home screen](http://imgur.com/PGJpdwA "Home Screen")
+![reps page](http://imgur.com/9Oj2ljx "Reps Page")
+![change location](http://imgur.com/IUCmUCk "Change Location")
 
 --
 
